@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -885,4 +886,893 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Contact - Dennis Ad</title>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <!-- External libraries -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        :root {
+            --left-bg: #FEF0FF;
+            --right-bg: #570057;
+        }
+
+        body {
+            height: 100svh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to right, var(--left-bg) 50%, var(--right-bg) 50%);
+        }
+
+        main {
+            box-sizing: border-box; /* DEFINITIVE FIX: Include padding in height calculation */
+            height: 100%;
+            overflow-y: auto; /* Allow scrolling ONLY when content overflows */
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 6rem; /* Space for the footer */
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        /* Desktop Header */
+        .site-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+            padding: 2rem 0;
+            align-items: center;
+        }
+
+        .site-header a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            text-decoration: none;
+            text-transform: titlecase;
+            letter-spacing: 0.7em;
+            font-size: 11pt;
+            transition: opacity 0.3s ease, transform 0.2s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .site-header a:hover {
+            opacity: 0.7;
+        }
+        
+        .nav-item-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .header-shape {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .nav-link-left {
+            color: #000000;
+        }
+
+        .nav-link-right {
+            color: #FFFFFF;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 20;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .mobile-header .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+        
+        .mobile-header .menu-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 9.921pt;
+            color: #FFFFFF;
+        }
+
+        .mobile-header .menu-icon {
+            width: 53px;
+            height: 53px;
+        }
+
+        /* Decorative Shapes */
+        .shape-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape-element {
+            position: absolute;
+            pointer-events: all;
+            animation: subtle-rotate 4s linear infinite;
+            transition: animation-duration 0.3s ease, width 0.3s ease, top 0.3s ease, left 0.3s ease;
+        }
+
+        .shape-element:hover {
+            animation-duration: 0.5s;
+        }
+
+        .shape-1 {
+            top: 16%;
+            left: 20%;
+            width: 190px;
+            transform: rotate(25deg);
+            animation-delay: -1s;
+        }
+
+        .shape-2 {
+            top: 43%;
+            left: 8%;
+            width: 190px;
+            transform: rotate(-15deg);
+            animation-delay: -2.5s;
+        }
+
+        .shape-3 {
+            top: 65%;
+            left: 23%;
+            width: 190px;
+            transform: rotate(50deg);
+            animation-delay: -4s;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding-top: 7rem;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            pointer-events: none;
+            flex: 1; 
+        }
+        
+        .right-pane {
+            padding: 1rem 3rem;
+            pointer-events: none;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100%; 
+        }
+
+        /* --- Contact Form Styles --- */
+        .contact-container {
+            background-color: #F2DCF2;
+            padding: 2.5rem 3rem;
+            /* 
+             * You can adjust the roundness of the corners here.
+             * The four values correspond to: top-left, top-right, bottom-right, bottom-left.
+            */
+            border-radius: 70px 25px 70px 25px;
+            max-width: 900px; /* WIDER */
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr; /* RE-BALANCED */
+            gap: 3rem; /* WIDER GAP */
+            align-items: start;
+            color: #000000;
+            pointer-events: all;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-intro h2 {
+            font-weight: 900;
+            font-size: 20pt; /* SMALLER */
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        .contact-intro p {
+            font-weight: 400;
+            font-size: 9.5pt; /* SMALLER */
+            line-height: 1.6;
+        }
+        
+        .email-link {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--right-bg);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .email-link:hover {
+            color: var(--right-bg);
+            border-color: transparent;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 0.5rem; /* COMPRESSED */
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            font-size: 9pt; /* SMALLER */
+            color: #000000;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.6rem; /* COMPRESSED */
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt; /* SMALLER */
+            color: #000000;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--right-bg);
+            box-shadow: 0 0 0 3px rgba(87, 0, 87, 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px; /* COMPRESSED */
+        }
+
+        .contact-form .send-button-wrapper {
+            text-align: right;
+            margin-top: 0.5rem; /* COMPRESSED */
+        }
+
+        .contact-form button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-form button img {
+            width: 90px;
+            height: auto;
+        }
+        
+        .contact-form button[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .form-status {
+            text-align: right;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            min-height: 1.2rem; /* Prevent layout shift */
+        }
+        .form-status.success {
+            color: #00570D; /* Using a theme-appropriate green */
+        }
+        .form-status.error {
+            color: #570000; /* Using a theme-appropriate red */
+        }
+
+
+        /* Pop-up effect on hover for clickable items */
+        .site-footer-bottom a,
+        .info-popup-footer a,
+        .mobile-header .btn {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .site-footer-bottom a,
+        .info-popup-footer a {
+            display: inline-block;
+        }
+        
+        .site-footer-bottom a:hover,
+        .info-popup-footer a:hover,
+        .mobile-header .btn:hover {
+            transform: scale(1.15);
+        }
+
+        .nav-item-wrapper:hover a {
+            transform: scale(1.15);
+        }
+
+        .nav-item-wrapper:hover .header-shape {
+            animation: subtle-rotate 0.5s linear infinite;
+        }
+        
+        @keyframes subtle-rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer */
+        .site-footer-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            transition: visibility 0s, opacity 0.2s linear;
+        }
+
+        .site-footer-bottom .footer-logo,
+        .site-footer-bottom .footer-info {
+            pointer-events: all;
+        }
+
+        .site-footer-bottom .footer-logo img {
+            width: 30px;
+            height: auto;
+        }
+
+        .site-footer-bottom .footer-info img {
+            height: 24px;
+            width: auto;
+        }
+        
+        .site-footer-bottom.hidden {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 0.2s, opacity 0.2s linear;
+        }
+
+        /* Info Popup Footer */
+        .info-popup-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 30;
+            background-color: rgba(77, 77, 77, 0.65);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            transform: translateY(100%);
+            transition: transform 0.4s ease-in-out;
+            visibility: hidden;
+        }
+
+        .info-popup-footer.show {
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .info-popup-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .popup-logo {
+            width: 30px;
+            height: auto;
+        }
+
+        .copyright-text {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: #FFFFFF;
+        }
+
+        .info-popup-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .info-popup-right a {
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-popup-right a:hover {
+            opacity: 0.7;
+        }
+
+        /* --- Mobile Offcanvas Nav Redesign --- */
+        .offcanvas {
+            width: 65vw !important;
+            max-width: 320px !important;
+            background-color: rgba(40, 40, 40, 0.75);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+        }
+        
+        .offcanvas-header {
+            border-bottom: none;
+            padding: 1rem 1.5rem;
+        }
+        
+        .offcanvas-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            padding: 2rem 1rem;
+        }
+        
+        .offcanvas-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .offcanvas-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 400;
+            transition: background-color 0.2s ease, transform 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offcanvas-nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.03);
+        }
+
+        .offcanvas-nav-link i.fa-solid {
+            width: 25px;
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .offcanvas-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 0;
+            background-color: #fff;
+            transition: height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .offcanvas-nav-link.active::before,
+        .offcanvas-nav-link:hover::before {
+            height: 80%;
+        }
+        
+        .offcanvas-nav-link.active {
+             background-color: rgba(255, 255, 255, 0.15);
+             font-weight: 700;
+        }
+
+        .offcanvas-footer {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .offcanvas-footer img {
+            width: 40px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        .offcanvas-footer a:hover img {
+            opacity: 1;
+        }
+        /* --- End Mobile Offcanvas Redesign --- */
+
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            body::before {
+                background: linear-gradient(to right, var(--left-bg) 16%, var(--right-bg) 16%);
+            }
+            
+            .shape-1 {
+                top: 20%;
+                left: -15%;
+                width: 140px;
+                transform: rotate(20deg);
+            }
+
+            .shape-2 {
+                top: 45%;
+                left: -22%;
+                width: 140px;
+                transform: rotate(-25deg);
+            }
+
+            .shape-3 {
+                top: 68%;
+                left: 4%;
+                width: 140px;
+                transform: rotate(40deg);
+            }
+
+            .page-content {
+                padding-top: 8rem;
+                min-height: auto;
+            }
+            
+            .right-pane {
+                padding-left: calc(16% + 1rem); /* Positions content correctly in the purple area */
+                padding-right: 1rem;
+                align-items: flex-start;
+                height: auto;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 2rem;
+                border-radius: 40px 15px 40px 15px;
+            }
+            
+            .contact-intro h2 {
+                font-size: 20pt;
+            }
+
+            .contact-intro p {
+                font-size: 10pt;
+                margin-bottom: 0;
+            }
+            
+            .contact-form button img {
+                width: 90px;
+            }
+
+            .site-footer-bottom {
+                padding: 1rem 1.5rem;
+            }
+
+            .site-footer-bottom .footer-logo img {
+                width: 25px;
+            }
+            .site-footer-bottom .footer-info img {
+                height: 20px;
+            }
+            
+            .info-popup-footer {
+                padding: 0.2rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .popup-logo {
+                width: 25px;
+            }
+            .copyright-text {
+                font-size: 0.7rem;
+            }
+            .info-popup-right a {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container-fluid px-0">
+        <!-- Decorative Shapes -->
+        <div class="shape-container">
+            <img src="assets/contacts/shape-element.svg" class="shape-element shape-1" alt="">
+            <img src="assets/contacts/shape-element.svg" class="shape-element shape-2" alt="">
+            <img src="assets/contacts/shape-element.svg" class="shape-element shape-3" alt="">
+        </div>
+
+        <!-- Desktop Header -->
+        <header class="site-header container-fluid d-none d-md-flex">
+            <div class="row g-0 w-100">
+                <nav class="col-6 pe-3">
+                    <ul class="list-unstyled d-flex justify-content-end m-0">
+                        <li class="px-5">
+                            <div class="nav-item-wrapper">
+                                <img src="assets/home/header-shape-light.svg?v=1.0.3" class="header-shape" alt="">
+                                <a href="index.html" class="nav-link-left">Home</a>
+                            </div>
+                        </li>
+                        <li class="px-5">
+                             <div class="nav-item-wrapper">
+                                <img src="assets/home/header-shape-light.svg?v=1.0.3" class="header-shape" alt="">
+                                <a href="about.html" class="nav-link-left">About</a>
+                            </div>
+                        </li>
+                        <li class="px-5">
+                             <div class="nav-item-wrapper">
+                                <img src="assets/home/header-shape-light.svg?v=1.0.3" class="header-shape" alt="">
+                                <a href="skills.html" class="nav-link-left">Skills</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="col-6 ps-3">
+                    <ul class="list-unstyled d-flex justify-content-start m-0">
+                        <li class="px-5">
+                            <div class="nav-item-wrapper">
+                                <img src="assets/home/header-shape-dark.svg?v=1.0.3" class="header-shape" alt="">
+                                <a href="work.html" class="nav-link-right">Work</a>
+                            </div>
+                        </li>
+                        <li class="px-5">
+                            <div class="nav-item-wrapper">
+                                <img src="assets/home/header-shape-dark.svg?v=1.0.3" class="header-shape" alt="">
+                                <a href="contact.html" class="nav-link-right">Contact</a>
+                            </div>
+                        </li>
+                         <li class="px-5">
+                            <div class="nav-item-wrapper">
+                                <img src="assets/home/header-shape-dark.svg?v=1.0.3" class="header-shape" alt="">
+                                <a href="more.html" class="nav-link-right">more</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Mobile Header -->
+        <header class="mobile-header d-md-none">
+            <button class="btn p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Toggle navigation">
+                <span class="menu-text">menu</span>
+                <img src="assets/home/mobile-menu-icon.svg?v=1.0.3" alt="" class="menu-icon" aria-hidden="true">
+            </button>
+        </header>
+
+        <!-- Page Content -->
+        <div class="row g-0 page-content">
+            <div class="d-none d-md-block col-md-6">
+                <!-- Left empty pane for desktop -->
+            </div>
+            <div class="col-12 col-md-6 right-pane">
+                 <div class="contact-container">
+                    <div class="contact-intro">
+                        <h2>My Inbox is Open</h2>
+                        <p>
+                            You can send a carrier pigeon, a smoke signal, or just use this much more reliable form. I'm always excited to hear about new projects, interesting ideas, or a great coffee recommendation.
+                            <br><br>
+                            Drop me a line using the form below, or email me directly at <a href="mailto:adebiyi335@gmail.com" class="email-link">adebiyi335@gmail.com</a>.
+                        </p>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required aria-label="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required aria-label="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" required aria-label="Message"></textarea>
+                        </div>
+                        <div class="send-button-wrapper">
+                             <button type="submit" aria-label="Send message" id="send-button">
+                                <img src="assets/contacts/send-button.svg" alt="Send">
+                            </button>
+                        </div>
+                         <div id="form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer-bottom container-fluid" id="main-footer">
+            <div class="footer-logo">
+                <a href="index.html"><img src="assets/home/logo.svg?v=1.0.3" alt="Dennis Ad Logo"></a>
+            </div>
+            <div class="footer-info">
+                <a href="#" id="info-icon-trigger" aria-label="Show site information"><img src="assets/home/info.svg?v=1.0.3" alt="Info Icon"></a>
+            </div>
+        </footer>
+
+        <!-- Info Popup Footer -->
+        <div class="info-popup-footer" id="info-popup-footer">
+            <div class="info-popup-left">
+                <a href="index.html" aria-label="Back to home"><img src="assets/home/logo.svg?v=1.0.3" alt="Dennis Ad Logo" class="popup-logo"></a>
+                <span class="copyright-text">&copy; 2025 by Dennis Ad</span>
+            </div>
+            <div class="info-popup-right">
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Upwork"><i class="fa-brands fa-upwork"></i></a>
+                <a href="#" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Mobile Offcanvas Nav -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
+        <div class="offcanvas-header">
+            <!-- Title removed for a cleaner look -->
+            <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="offcanvas-nav-list">
+                <li><a href="index.html" class="offcanvas-nav-link"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+                <li><a href="about.html" class="offcanvas-nav-link"><i class="fa-solid fa-user"></i><span>About</span></a></li>
+                <li><a href="skills.html" class="offcanvas-nav-link"><i class="fa-solid fa-star"></i><span>Skills</span></a></li>
+                <li><a href="work.html" class="offcanvas-nav-link"><i class="fa-solid fa-briefcase"></i><span>Work</span></a></li>
+                <li><a href="contact.html" class="offcanvas-nav-link"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+                <li><a href="more.html" class="offcanvas-nav-link"><i class="fa-solid fa-ellipsis"></i><span>More</span></a></li>
+            </ul>
+            <div class="offcanvas-footer">
+                 <a href="index.html"><img src="assets/home/logo.svg?v=1.0.3" alt="Dennis Ad Logo"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JS libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Info Popup Footer Logic ---
+            const infoIconTrigger = document.getElementById('info-icon-trigger');
+            const infoPopupFooter = document.getElementById('info-popup-footer');
+            const mainFooter = document.getElementById('main-footer');
+
+            if (infoIconTrigger && infoPopupFooter && mainFooter) {
+                infoIconTrigger.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    infoPopupFooter.classList.toggle('show');
+                    mainFooter.classList.toggle('hidden');
+                });
+            }
+
+            // --- Mobile Nav Active Page Logic ---
+            try {
+                const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+                const mobileNavLinks = document.querySelectorAll('#mobileNav .offcanvas-nav-link');
+                
+                mobileNavLinks.forEach(link => {
+                    const linkPage = link.getAttribute('href').split("/").pop();
+                    if (linkPage === 'contact.html' && currentPage === 'contact.html') {
+                         link.classList.add('active');
+                    } else if (linkPage === currentPage) {
+                         link.classList.add('active');
+                    }
+                });
+            } catch (e) {
+                console.error("Error setting active mobile nav link:", e);
+            }
+            
+            // --- Contact Form Logic ---
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                const formStatus = document.getElementById('form-status');
+                const sendButton = document.getElementById('send-button');
+
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const formAction = 'https://formspree.io/f/mrbyknqj'; 
+
+                    const formData = new FormData(contactForm);
+                    
+                    sendButton.disabled = true;
+                    formStatus.textContent = 'Sending...';
+                    formStatus.className = 'form-status';
+
+                    try {
+                        const response = await fetch(formAction, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            formStatus.textContent = 'Thank you! Your message has been sent.';
+                            formStatus.classList.add('success');
+                            contactForm.reset();
+                        } else {
+                            const data = await response.json();
+                            if (Object.hasOwn(data, 'errors')) {
+                                formStatus.textContent = data["errors"].map(error => error["message"]).join(", ");
+                            } else {
+                                formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+                            }
+                            formStatus.classList.add('error');
+                        }
+                    } catch (error) {
+                        formStatus.textContent = 'Oops! There was a network problem. Please try again.';
+                        formStatus.classList.add('error');
+                    } finally {
+                        sendButton.disabled = false;
+                        setTimeout(() => {
+                            formStatus.textContent = '';
+                            formStatus.className = 'form-status';
+                        }, 6000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+>>>>>>> a4056a94213afe1a1d0115889c5ad1b41ff45e79
 </html>
