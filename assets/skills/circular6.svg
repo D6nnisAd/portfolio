@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW X7 -->
@@ -19,25 +18,3 @@ viewBox="0 0 2955 2716"
   <circle class="fil1" cx="2534" cy="2007" r="421"/>
  </g>
 </svg>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Creator: CorelDRAW X7 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.82514in" height="2.59617in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 2955 2716"
- xmlns:xlink="http://www.w3.org/1999/xlink">
- <defs>
-  <style type="text/css">
-   <![CDATA[
-    .fil1 {fill:#FEFEFE}
-    .fil0 {fill:#FEFEFE;fill-rule:nonzero}
-   ]]>
-  </style>
- </defs>
- <g id="Layer_x0020_1">
-  <metadata id="CorelCorpID_0Corel-Layer"/>
-  <path class="fil0" d="M1358 0c375,0 714,152 960,398 245,245 397,585 397,960 0,375 -152,714 -397,960 -246,246 -585,398 -960,398 -375,0 -715,-152 -960,-398 -246,-246 -398,-585 -398,-960 0,-375 152,-715 398,-960 245,-246 585,-398 960,-398l0 0zm939 418c-240,-240 -572,-389 -939,-389l0 0c-367,0 -699,149 -940,389 -240,241 -389,573 -389,940 0,367 149,699 389,939 241,241 573,389 940,389 367,0 699,-148 939,-389 241,-240 390,-572 390,-939 0,-367 -149,-699 -390,-940z"/>
-  <circle class="fil1" cx="2534" cy="2007" r="421"/>
- </g>
-</svg>
->>>>>>> a4056a94213afe1a1d0115889c5ad1b41ff45e79
