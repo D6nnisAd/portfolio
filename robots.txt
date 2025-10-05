@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dennisad.qzz.io/sitemap.xml

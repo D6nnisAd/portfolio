@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Dennis Ad - Portfolio</title>
+    <title>Dennis Ad - Designer & Developer Portfolio</title>
+    <meta name="description" content="Welcome to the portfolio of Dennis Ad, a creative designer and full-stack developer specializing in building beautiful, functional, and user-centric web experiences.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dennisad.qzz.io/index.html">
+    <meta property="og:title" content="Dennis Ad - Designer & Developer Portfolio">
+    <meta property="og:description" content="Welcome to the portfolio of Dennis Ad, a creative designer and full-stack developer specializing in building beautiful, functional, and user-centric web experiences.">
+    <meta property="og:image" content="https://dennisad.qzz.io/assets/home/hero-image.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dennisad.qzz.io/index.html">
+    <meta property="twitter:title" content="Dennis Ad - Designer & Developer Portfolio">
+    <meta property="twitter:description" content="Welcome to the portfolio of Dennis Ad, a creative designer and full-stack developer specializing in building beautiful, functional, and user-centric web experiences.">
+    <meta property="twitter:image" content="https://dennisad.qzz.io/assets/home/hero-image.png">
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
@@ -725,7 +738,7 @@
                             <!-- Show and wrap on mobile -->
                             <h2 class="content-title d-block d-md-none">DESIGN<br>ER</h2>
                             <p class="content-body" id="designer-text-body">
-                                <!-- Content is populated by script -->
+                                <strong>I am fluent in aesthetics, user journey mapping, and the subtle art of telling a client 'no.'.</strong> My mission is to fight against visual noise and create designs so clean, they could pass the ultimate WCAG accessibility test.
                             </p>
                         </div>
                     </div>
@@ -738,7 +751,7 @@
                             <!-- Show and wrap on mobile -->
                             <h2 class="content-title d-block d-md-none">DEVEL<br>OPER</h2>
                             <p class="content-body" id="developer-text-body">
-                               <!-- Content is populated by script -->
+                               <strong>I architect the backend plumbing and craft front-end functionality, sometimes simultaneously.</strong> My primary hobby involves debugging a line of code for six hours, only to realize I missed a semicolon.
                             </p>
                         </div>
                     </div>
@@ -784,9 +797,9 @@
                 <span class="copyright-text">&copy; 2025 by Dennis Ad</span>
             </div>
             <div class="info-popup-right">
-                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://www.upwork.com/freelancers/~0173c255d57d448cba?mp_source=share" aria-label="Upwork"><i class="fa-brands fa-upwork"></i></a>
-                <a href="https://x.com/D4nnisAd" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/dennis-adebiyi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.upwork.com/freelancers/~0173c255d57d448cba?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork"></i></a>
+                <a href="https://x.com/D4nnisAd" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
     </main>
@@ -964,8 +977,7 @@
                         // Set initial state without animation
                         document.body.style.setProperty('--left-bg', data.leftBg);
                         document.body.style.setProperty('--right-bg', data.rightBg);
-                        designerTextBody.innerHTML = formatContent(data.designerText);
-                        developerTextBody.innerHTML = formatContent(data.developerText);
+                        // The text is already in the HTML for SEO, so we just update the button link
                         if (learnMoreBtn) learnMoreBtn.href = data.learnMoreLink;
                     }
                 }
