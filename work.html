@@ -256,10 +256,15 @@
         }
 
         .work-item {
-            background-color: #fff;
+            /* Glassmorphism */
+            background-color: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
             border-radius: 50px 20px 50px 20px;
             padding: 1rem;
-            color: #000;
+            color: #FFFFFF;
             text-decoration: none;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer;
@@ -268,7 +273,7 @@
 
         .work-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .work-item-image {
@@ -299,14 +304,14 @@
         .work-item-title {
             font-weight: 900;
             font-size: 1rem;
-            color: #000;
+            color: #FFFFFF;
             margin-bottom: 0.25rem;
         }
 
         .work-item-subtitle {
             font-weight: 300;
             font-size: 0.85rem;
-            color: #555;
+            color: #E0E0E0;
         }
 
         /* --- GUIDE: WIDTH & SIZING (Desktop) --- */
@@ -341,16 +346,16 @@
         }
         
         .work-detail-card {
-            background-color: #D2D3D5;
-            /* --- GUIDE: SHAPE & STYLE --- */
-            /* You can adjust the roundness of the corners here. */
-            /* The four values correspond to: top-left, top-right, bottom-right, bottom-left. */
+            /* Glassmorphism */
+            background-color: rgba(210, 211, 213, 0.65);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+
             border-radius: 40px 40px 10px 10px;
-            /* --- GUIDE: SIZING & SPACING --- */
-            /* Change padding to adjust space inside the grey card. */
             padding: 2rem;
             position: relative;
-            /* Change margin-bottom to adjust space between the card and the text below it. */
             margin-bottom: 2rem;
         }
 
@@ -657,12 +662,15 @@
                 overflow-y: visible; /* Let the parent scroll */
             }
              .work-detail-card {
-                background-color: #D2D3D5;
-                /* Change padding for the space inside the grey card on mobile. */
+                /* Glassmorphism */
+                background-color: rgba(210, 211, 213, 0.65);
+                -webkit-backdrop-filter: blur(15px);
+                backdrop-filter: blur(15px);
+                border-top: 1px solid rgba(255, 255, 255, 0.5);
+                border-left: 1px solid rgba(255, 255, 255, 0.5);
+
                 padding: 1.5rem;
-                /* Change margin-bottom for the space between the card and the text below it. */
                 margin-bottom: 1.5rem;
-                /* This is the corner roundness for the mobile view. */
                 border-radius: 40px 40px 10px 10px;
             }
 
