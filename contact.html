@@ -218,7 +218,12 @@
 
         /* --- Contact Form Styles --- */
         .contact-container {
-            background-color: #F2DCF2;
+            /* Glassmorphism */
+            background-color: rgba(242, 220, 242, 0.65); /* Translucent version of original color */
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
             padding: 2.5rem 3rem;
             /* 
              * You can adjust the roundness of the corners here.
