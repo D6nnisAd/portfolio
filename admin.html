@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Dennis Ad Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Quill.js Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <style>
+        :root {
+            --background: #111827; /* Dark Slate Blue */
+            --surface: #1f2937; /* Lighter Slate */
+            --surface-light: #374151;
+            --primary: #3b82f6; /* Vibrant Blue */
+            --primary-light: #60a5fa;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #374151;
+            --success: #22c55e;
+            --error: #ef4444;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        /* --- Login Page --- */
+        #login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        #login-form {
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+            background-color: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+
+        #login-form h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background-color: var(--background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            white-space: nowrap;
+            position: relative; /* For spinner positioning */
+        }
+
+        .btn-primary {
+            background-image: linear-gradient(to right, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .btn-success {
+             background-image: linear-gradient(to right, #22c55e, #4ade80);
+             color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #login-error {
+            color: var(--error);
+            text-align: center;
+            margin-top: 1rem;
+            min-height: 1.2em;
+            font-size: 0.9rem;
+        }
+        
+        /* --- Admin Dashboard --- */
+        #admin-dashboard {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2.5rem;
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .admin-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-light);
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+        
+        .admin-main {
+            padding: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .toolbar h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        #project-list {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        }
+
+        .project-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            position: relative;
+            cursor: grab;
+            /* Smoother glide transition */
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease-in-out;
+        }
+        
+        .project-card.sortable-ghost {
+            opacity: 0.4;
+            background-color: var(--primary);
+        }
+        .project-card.sortable-drag {
+            cursor: grabbing;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        .project-card-img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--background);
+        }
+
+        .project-card-body {
+            padding: 1.25rem;
+        }
+        
+        .project-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.25rem;
+        }
+        
+        .project-card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .project-card-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .project-card:hover .project-card-actions {
+            opacity: 1;
+        }
+        
+        .btn-icon {
+            background-color: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(5px);
+            color: var(--text-primary);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 0.9rem;
+            padding: 0;
+        }
+        .btn-icon:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-out;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        /* Image Upload Styles */
+        .image-upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+            color: var(--text-secondary);
+        }
+        .image-upload-area:hover {
+            border-color: var(--primary);
+            background-color: var(--background);
+        }
+        .image-preview-container {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .image-preview {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .image-preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .image-filename {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .remove-img-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--error);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--surface);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .image-preview.dragging {
+            opacity: 0.5;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--background);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+        }
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        #exploreLinkGroup {
+            display: none;
+        }
+        
+        .modal-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Quill Editor Dark Theme */
+        .ql-toolbar {
+            border-radius: 8px 8px 0 0 !important;
+            background-color: var(--background) !important;
+            border-color: var(--border-color) !important;
+        }
+        .ql-container {
+            border-radius: 0 0 8px 8px !important;
+            background-color: var(--background) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 150px;
+        }
+        .ql-editor {
+            font-size: 1rem;
+        }
+        .ql-snow .ql-stroke {
+            stroke: var(--text-secondary) !important;
+        }
+        .ql-snow .ql-picker-label {
+            color: var(--text-secondary) !important;
+        }
+        .ql-snow .ql-picker-options {
+            background-color: var(--surface-light);
+            border-color: var(--border-color) !important;
+        }
+
+        /* --- Custom Loaders --- */
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+        #project-list.loading {
+            display: block;
+        }
+        .page-loader {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            border: 3px solid;
+            border-color: var(--primary) var(--primary) transparent transparent;
+            box-sizing: border-box;
+            animation: spin 1s linear infinite;
+        }
+        .page-loader::after, .page-loader::before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px solid;
+            border-color: transparent transparent var(--primary-light) var(--primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            animation: spin-back 0.5s linear infinite;
+            transform-origin: center center;
+        }
+        .page-loader::before {
+            width: 32px;
+            height: 32px;
+            border-color: var(--primary) var(--primary) transparent transparent;
+            animation: spin 1.5s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-back { 100% { transform: rotate(-360deg); } }
+        
+        /* Button Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -10px;
+        }
+        .btn.loading > * {
+            visibility: hidden;
+        }
+        
+        /* --- MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 768px) {
+            body { font-size: 14px; }
+            .admin-header { flex-direction: column; gap: 1rem; padding: 1rem; }
+            .admin-main { padding: 1.5rem; }
+            .toolbar { flex-direction: column; align-items: stretch; gap: 1rem; margin-bottom: 1.5rem; }
+            .toolbar-left { justify-content: space-between; }
+            .toolbar h2 { font-size: 1.5rem; }
+            #project-list { grid-template-columns: 1fr; gap: 1.5rem; }
+            .project-card:hover { transform: none; box-shadow: 0 4px 10px var(--shadow-color); }
+            .project-card-actions { opacity: 1; }
+            .modal-overlay { padding: 1rem 0; align-items: flex-start; }
+            .modal-content { padding: 1.5rem; border-radius: 16px 16px 0 0; min-height: 100%;}
+            .modal-header h2 { font-size: 1.25rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .modal-footer { flex-direction: column; }
+            .btn { width: 100%; }
+            #logout-btn, .toolbar .btn { width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-container">
+        <form id="login-form">
+            <h1>Admin Login</h1>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            <p id="login-error"></p>
+        </form>
+    </div>
+
+    <div id="admin-dashboard">
+        <header class="admin-header">
+            <h1>Admin Panel</h1>
+            <button id="logout-btn" class="btn btn-secondary"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </header>
+
+        <main class="admin-main">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <h2>My Work Projects</h2>
+                     <button id="save-order-btn" class="btn btn-success" style="display: none;">
+                        <i class="fa-solid fa-check"></i> Save Order
+                    </button>
+                </div>
+                <button id="add-project-btn" class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i> Add New Project
+                </button>
+            </div>
+            <div id="project-list" class="loading">
+                <div class="loader-container"><div class="page-loader"></div></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Project Modal -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Project</h2>
+                <button class="modal-close-btn">&times;</button>
+            </div>
+            <form id="project-form">
+                <input type="hidden" id="projectId">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" required>
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="subtitle">Subtitle</label>
+                    <input type="text" id="subtitle" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="description-editor">Description</label>
+                    <div id="description-editor"></div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Main Image</label>
+                    <div id="main-image-upload" class="image-upload-area">Click to upload main image</div>
+                    <div id="main-image-preview-container" class="image-preview-container"></div>
+                    <input type="file" id="main-image-input" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Gallery Images (Drag to reorder)</label>
+                    <div id="gallery-images-upload" class="image-upload-area">Click to upload gallery images</div>
+                    <div id="gallery-images-preview-container" class="image-preview-container"></div>
+                    <input type="file" id="gallery-images-input" accept="image/*" multiple style="display: none;">
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="showExploreButton" style="width: auto;">
+                        <label for="showExploreButton">Show "Explore" Button</label>
+                    </div>
+                    <div class="form-group" id="exploreLinkGroup">
+                        <label for="exploreLink">Explore Link</label>
+                        <input type="url" id="exploreLink" placeholder="https://example.com">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script type="module">
+        import { auth, db, cloudinaryConfig } from './firebase-init.js';
+        import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc, query, orderBy, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const loginContainer = document.getElementById('login-container');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        const logoutBtn = document.getElementById('logout-btn');
+        const projectList = document.getElementById('project-list');
+        const addProjectBtn = document.getElementById('add-project-btn');
+        const saveOrderBtn = document.getElementById('save-order-btn');
+        const projectModal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const projectForm = document.getElementById('project-form');
+        const closeBtns = document.querySelectorAll('.modal-close-btn');
+        
+        let currentProjects = [];
+        let quill = null;
+
+        // --- Loader Functions ---
+        function showLoader(button) {
+            button.disabled = true;
+            button.classList.add('loading');
+            const spinner = document.createElement('span');
+            spinner.className = 'spinner';
+            button.appendChild(spinner);
+        }
+
+        function hideLoader(button) {
+            button.disabled = false;
+            button.classList.remove('loading');
+            const spinner = button.querySelector('.spinner');
+            if (spinner) {
+                button.removeChild(spinner);
+            }
+        }
+
+        // --- Auth Logic ---
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                loginContainer.style.display = 'none';
+                adminDashboard.style.display = 'flex';
+                listenForProjects();
+            } else {
+                loginContainer.style.display = 'flex';
+                adminDashboard.style.display = 'none';
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const loginButton = loginForm.querySelector('button[type="submit"]');
+            showLoader(loginButton);
+            loginError.textContent = '';
+            
+            const email = loginForm.email.value;
+            const password = loginForm.password.value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                loginError.textContent = "Invalid email or password.";
+                console.error(error);
+            } finally {
+                hideLoader(loginButton);
+            }
+        });
+
+        logoutBtn.addEventListener('click', async () => {
+            showLoader(logoutBtn);
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error("Logout error:", error);
+            } finally {
+                hideLoader(logoutBtn);
+            }
+        });
+
+        // --- Project Fetching & Rendering ---
+        function listenForProjects() {
+            const projectsCol = collection(db, 'projects');
+            const q = query(projectsCol, orderBy('order', 'asc'));
+            
+            onSnapshot(q, (snapshot) => {
+                projectList.classList.remove('loading');
+                projectList.innerHTML = '';
+                currentProjects = [];
+                snapshot.forEach(doc => {
+                    const project = { id: doc.id, ...doc.data() };
+                    currentProjects.push(project);
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.dataset.id = project.id;
+                    card.innerHTML = `
+                        <div class="project-card-actions">
+                            <button class="btn-icon edit-btn" data-id="${project.id}" aria-label="Edit"><i class="fa-solid fa-pencil"></i></button>
+                            <button class="btn-icon delete-btn" data-id="${project.id}" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        <div class="project-card-img" style="background-image: url('${project.mainImage}')"></div>
+                        <div class="project-card-body">
+                            <h3 class="project-card-title">${project.title}</h3>
+                            <p class="project-card-subtitle">${project.subtitle}</p>
+                        </div>
+                    `;
+                    projectList.appendChild(card);
+                });
+            });
+        }
+        
+        projectList.addEventListener('click', async e => {
+            const targetButton = e.target.closest('button');
+            if (!targetButton) return;
+            const id = targetButton.dataset.id;
+
+            if(targetButton.classList.contains('edit-btn')) {
+                const projectToEdit = currentProjects.find(p => p.id === id);
+                openModal(projectToEdit);
+            }
+            if(targetButton.classList.contains('delete-btn')) {
+                if(confirm('Are you sure you want to delete this project?')) {
+                    showLoader(targetButton);
+                    try {
+                        await deleteDoc(doc(db, 'projects', id));
+                    } catch(err) {
+                        console.error("Delete failed:", err);
+                        alert("Could not delete project.");
+                    } finally {
+                        // The button will be removed on re-render, so no need to hide loader
+                    }
+                }
+            }
+        });
+
+        // --- Modal Logic ---
+        function openModal(project = null) {
+            projectForm.reset();
+            document.getElementById('main-image-preview-container').innerHTML = '';
+            document.getElementById('gallery-images-preview-container').innerHTML = '';
+            
+            if (!quill) {
+                quill = new Quill('#description-editor', {
+                    modules: { toolbar: [['bold', 'italic'], ['link'], [{ 'list': 'ordered'}, { 'list': 'bullet' }]] },
+                    theme: 'snow'
+                });
+            }
+
+            if (project) {
+                modalTitle.textContent = 'Edit Project';
+                projectForm.projectId.value = project.id;
+                projectForm.title.value = project.title;
+                projectForm.subtitle.value = project.subtitle;
+                quill.root.innerHTML = project.description || '';
+                projectForm.showExploreButton.checked = project.showExploreButton;
+                projectForm.exploreLink.value = project.exploreLink || '';
+                
+                if (project.mainImage) addMainImagePreview(project.mainImage);
+                if (project.galleryImages) project.galleryImages.forEach(url => addGalleryImagePreview(url));
+
+            } else {
+                modalTitle.textContent = 'Add New Project';
+                projectForm.projectId.value = '';
+                quill.root.innerHTML = '';
+            }
+            
+            toggleExploreLink();
+            projectModal.classList.add('show');
+        }
+
+        function closeModal() { projectModal.classList.remove('show'); }
+        addProjectBtn.addEventListener('click', () => openModal());
+        closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+        projectForm.showExploreButton.addEventListener('change', toggleExploreLink);
+        function toggleExploreLink() {
+            document.getElementById('exploreLinkGroup').style.display = projectForm.showExploreButton.checked ? 'block' : 'none';
+        }
+
+        // --- Image Upload Logic ---
+        const mainImageUpload = document.getElementById('main-image-upload');
+        const mainImageInput = document.getElementById('main-image-input');
+        const galleryImagesUpload = document.getElementById('gallery-images-upload');
+        const galleryImagesInput = document.getElementById('gallery-images-input');
+
+        mainImageUpload.addEventListener('click', () => mainImageInput.click());
+        galleryImagesUpload.addEventListener('click', () => galleryImagesInput.click());
+
+        mainImageInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) uploadFile(e.target.files[0], 'main');
+        });
+        galleryImagesInput.addEventListener('change', (e) => {
+            [...e.target.files].forEach(file => uploadFile(file, 'gallery'));
+        });
+
+        async function uploadFile(file, type) {
+            const url = `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`;
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', cloudinaryConfig.uploadPreset);
+
+            try {
+                const response = await fetch(url, { method: 'POST', body: formData });
+                const data = await response.json();
+                if (type === 'main') {
+                    addMainImagePreview(data.secure_url, file.name);
+                } else {
+                    addGalleryImagePreview(data.secure_url, file.name);
+                }
+            } catch (error) {
+                console.error('Upload error:', error);
+                alert('Image upload failed.');
+            }
+        }
+        
+        function getFilenameFromUrl(url) {
+            if (!url) return 'image';
+            try { return decodeURIComponent(url.split('/').pop()); } catch { return 'image'; }
+        }
+
+        function addMainImagePreview(url, name = '') {
+            const container = document.getElementById('main-image-preview-container');
+            const displayName = name || getFilenameFromUrl(url);
+            container.innerHTML = `
+                <div class="image-preview" data-url="${url}">
+                    <img src="${url}" alt="Main image preview">
+                    <span class="image-filename" title="${displayName}">${displayName}</span>
+                    <button type="button" class="remove-img-btn">&times;</button>
+                </div>`;
+        }
+
+        function addGalleryImagePreview(url, name = '') {
+            const container = document.getElementById('gallery-images-preview-container');
+            const displayName = name || getFilenameFromUrl(url);
+            const div = document.createElement('div');
+            div.className = 'image-preview';
+            div.dataset.url = url;
+            div.innerHTML = `
+                <img src="${url}" alt="Gallery image preview">
+                <span class="image-filename" title="${displayName}">${displayName}</span>
+                <button type="button" class="remove-img-btn">&times;</button>`;
+            container.appendChild(div);
+        }
+        
+        document.addEventListener('click', e => {
+           if(e.target.classList.contains('remove-img-btn')) {
+               e.target.closest('.image-preview').remove();
+           }
+        });
+        
+        new Sortable(document.getElementById('gallery-images-preview-container'), {
+            animation: 150,
+            ghostClass: 'dragging'
+        });
+
+        // --- Form Submission ---
+        projectForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const saveButton = projectForm.querySelector('button[type="submit"]');
+            showLoader(saveButton);
+            
+            const mainImagePreview = document.querySelector('#main-image-preview-container .image-preview');
+            const galleryImagePreviews = document.querySelectorAll('#gallery-images-preview-container .image-preview');
+
+            const projectData = {
+                title: projectForm.title.value,
+                subtitle: projectForm.subtitle.value,
+                description: quill.root.innerHTML,
+                mainImage: mainImagePreview ? mainImagePreview.dataset.url : '',
+                galleryImages: [...galleryImagePreviews].map(el => el.dataset.url),
+                showExploreButton: projectForm.showExploreButton.checked,
+                exploreLink: projectForm.exploreLink.value,
+            };
+            
+            const id = projectForm.projectId.value;
+            try {
+                 if (id) {
+                    await updateDoc(doc(db, 'projects', id), projectData);
+                } else {
+                    projectData.order = currentProjects.length; // Add new projects to the end
+                    await addDoc(collection(db, 'projects'), projectData);
+                }
+                closeModal();
+            } catch (error) {
+                console.error("Error saving project:", error);
+                alert("Failed to save project.");
+            } finally {
+                hideLoader(saveButton);
+            }
+        });
+
+        // --- Drag and Drop Project Reordering ---
+        new Sortable(projectList, {
+            animation: 350, // Smoother animation
+            easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+            ghostClass: 'sortable-ghost',
+            dragClass: 'sortable-drag',
+            onEnd: function (evt) {
+                saveOrderBtn.style.display = 'inline-flex';
+            }
+        });
+
+        saveOrderBtn.addEventListener('click', async () => {
+            showLoader(saveOrderBtn);
+            const projectCards = projectList.querySelectorAll('.project-card');
+            const batch = writeBatch(db);
+            
+            projectCards.forEach((card, index) => {
+                const projectId = card.dataset.id;
+                const projectRef = doc(db, "projects", projectId);
+                batch.update(projectRef, { order: index });
+            });
+
+            try {
+                await batch.commit();
+                saveOrderBtn.style.display = 'none';
+            } catch (error) {
+                console.error("Error saving order: ", error);
+                alert('Failed to save order.');
+            } finally {
+                hideLoader(saveOrderBtn);
+            }
+        });
+    </script>
+</body>
+</html>

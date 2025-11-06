@@ -604,6 +604,41 @@
         .offcanvas-footer { text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.15); }
         .offcanvas-footer img { width: 40px; opacity: 0.8; }
         .offcanvas-footer a:hover img { opacity: 1; }
+        
+        /* --- SKELETON LOADER --- */
+        .work-item-skeleton {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50px 20px 50px 20px;
+            padding: 1rem;
+        }
+        .work-item-image-skeleton {
+            aspect-ratio: 4 / 3;
+            border-radius: 40px 15px 40px 15px;
+            margin-bottom: 1rem;
+        }
+        .work-item-title-skeleton {
+            height: 1rem;
+            width: 80%;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .work-item-subtitle-skeleton {
+            height: 0.85rem;
+            width: 60%;
+            border-radius: 4px;
+        }
+        .work-item-image-skeleton, .work-item-title-skeleton, .work-item-subtitle-skeleton {
+            background: #e0e0e022;
+            background-image: linear-gradient(to right, #e0e0e022 0%, #f5f5f522 20%, #e0e0e022 40%, #e0e0e022 100%);
+            background-repeat: no-repeat;
+            background-size: 800px 104px; 
+            animation: shimmer 1.5s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+        }
+
 
         /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
@@ -783,21 +818,43 @@
             <div class="right-pane-wrapper">
                  <div class="right-pane">
                     <div id="work-grid">
-                        <!-- Project items will be dynamically inserted here by JavaScript -->
+                        <!-- Skeletons for loading state -->
+                        <div class="work-item-skeleton">
+                            <div class="work-item-image-skeleton"></div>
+                            <div class="work-item-text">
+                                <div class="work-item-title-skeleton"></div>
+                                <div class="work-item-subtitle-skeleton"></div>
+                            </div>
+                        </div>
+                        <div class="work-item-skeleton">
+                            <div class="work-item-image-skeleton"></div>
+                            <div class="work-item-text">
+                                <div class="work-item-title-skeleton"></div>
+                                <div class="work-item-subtitle-skeleton"></div>
+                            </div>
+                        </div>
+                         <div class="work-item-skeleton">
+                            <div class="work-item-image-skeleton"></div>
+                            <div class="work-item-text">
+                                <div class="work-item-title-skeleton"></div>
+                                <div class="work-item-subtitle-skeleton"></div>
+                            </div>
+                        </div>
+                        <div class="work-item-skeleton">
+                            <div class="work-item-image-skeleton"></div>
+                            <div class="work-item-text">
+                                <div class="work-item-title-skeleton"></div>
+                                <div class="work-item-subtitle-skeleton"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Work Detail View (Moved outside of layout panes for correct mobile overlay) -->
-        <!-- GUIDE: CONTENT ORDERING -->
-        <!-- To change the order of content, you can move these main blocks around. -->
-        <!-- For example, to put the text description ABOVE the image card, move the -->
-        <!-- entire <div class="work-detail-text-content">...</div> block -->
-        <!-- above the <div class="work-detail-card">...</div> block inside the scroll container below. -->
         <div id="work-detail-view">
             <div class="work-detail-scroll-content">
-                <!-- GUIDE: This is the main image card container -->
                 <div class="work-detail-card">
                     <img src="assets/work/cancel-button.svg" class="work-detail-close-btn" id="close-detail-btn" alt="Close detail view">
                     <div id="detail-main-image" class="work-detail-image-main"></div>
@@ -811,14 +868,13 @@
                         <img src="assets/work/left-button.svg" class="gallery-arrow gallery-arrow-right" alt="Next image">
                     </div>
                 </div>
-                <!-- GUIDE: This is the text content container -->
                 <div class="work-detail-text-content">
                     <div class="title-row">
                         <h2 id="detail-title" class="work-detail-title"></h2>
-                        <a id="detail-explore-link" href="#"><img src="assets/work/explore-button.svg" class="explore-button" alt="Explore project"></a>
+                        <a id="detail-explore-link" href="#" target="_blank" rel="noopener noreferrer"><img src="assets/work/explore-button.svg" class="explore-button" alt="Explore project"></a>
                     </div>
                     <p id="detail-subtitle" class="work-detail-subtitle"></p>
-                    <p id="detail-body" class="work-detail-body"></p>
+                    <div id="detail-body" class="work-detail-body"></div>
                 </div>
             </div>
         </div>
@@ -871,8 +927,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     
-    <script>
+    <script type="module">
+        import { fetchProjects } from './app.js';
+
         document.addEventListener('DOMContentLoaded', () => {
+            let projects = [];
+
             // --- Info Popup Footer Logic ---
             const infoIconTrigger = document.getElementById('info-icon-trigger');
             const infoPopupFooter = document.getElementById('info-popup-footer');
@@ -902,109 +962,6 @@
             }
             
             // --- Work Page Data-Driven Logic ---
-            const projects = [
-                {
-                    id: 1,
-                    title: 'Bomsclippers E-Commerce Platform',
-                    subtitle: 'A Seamless Shopping Experience Built with React and Next.js',
-                    description: `Bomsclippers.ng is a fully functional e-commerce website I developed to deliver a seamless and user-friendly online shopping experience. Built using React with Next.js for the frontend, this platform leverages the power of modern web technologies to ensure fast loading times, responsive design, and an intuitive interface. The backend is powered by Supabase integrated with PostgreSQL, providing a robust and scalable database solution to manage products, user accounts, and transactions efficiently.\nThe site features a clean layout, with sections for browsing products, detailed item pages, and a smooth checkout process. I focused on creating a mobile-first design, ensuring it works flawlessly across devices. The integration of Supabase allowed for real-time data handling, making it easy to update inventory and user information dynamically.\nThis project showcases my ability to combine frontend development with backend infrastructure, delivering a cohesive e-commerce solution. From designing the user interface to implementing secure data management, I ensured the site meets both aesthetic and functional standards. The use of Next.js also enabled server-side rendering, enhancing SEO and performance, key factors for any successful online store. This experience has honed my skills in full-stack development, and I’m excited to highlight it as a testament to my capability in building practical, real-world applications.`,
-                    mainImage: 'assets/work/images/boms-clippers/main.png',
-                    galleryImages: ['assets/work/images/boms-clippers/main.png', 'assets/work/images/boms-clippers/1.png', 'assets/work/images/boms-clippers/2.png', 'assets/work/images/boms-clippers/3.png', 'assets/work/images/boms-clippers/4.png', 'assets/work/images/boms-clippers/5.png', 'assets/work/images/boms-clippers/6.png', 'assets/work/images/boms-clippers/7.png', 'assets/work/images/boms-clippers/8.png'],
-                    showExploreButton: true,
-                    exploreLink: 'https://www.bomsclippers.ng'
-                },
-                {
-                    id: 2,
-                    title: 'Miamor Platform Micro-Website',
-                    subtitle: 'A Compact Hub Built for Engagement',
-                    description: `Miamor-platform.ng is a sleek micro-website I crafted to deliver a focused and engaging user experience. Designed with simplicity in mind, this site showcases a minimalistic yet effective layout, perfect for highlighting key services. Built with modern web technologies, it ensures fast performance and responsiveness across all devices. The project emphasizes clean design and intuitive navigation, making it easy for visitors to explore content quickly.\nThis micro-website reflects my ability to create targeted digital solutions that pack a punch without overwhelming the user. I focused on optimizing load times and integrating smooth transitions, drawing from my experience with full-stack development. The site serves as a testament to my skill in balancing aesthetics with functionality, offering a professional platform that businesses can rely on for a strong online presence. Whether it’s promoting a service or building brand awareness, this project showcases my knack for delivering concise, impactful web designs.\nThe development process involved careful planning to ensure every element served a purpose, from the typography to the color scheme. I also incorporated subtle animations to enhance user interaction, a detail that adds a modern touch. This experience has sharpened my expertise in creating micro-sites that stand out, and I’m excited to feature it in my portfolio as an example of efficient, high-quality web development.`,
-                    mainImage: 'assets/work/images/miamor-platform/main.png',
-                    galleryImages: ['assets/work/images/miamor-platform/main.png', 'assets/work/images/miamor-platform/1.png', 'assets/work/images/miamor-platform/2.png', 'assets/work/images/miamor-platform/3.png', 'assets/work/images/miamor-platform/4.png', 'assets/work/images/miamor-platform/5.png', 'assets/work/images/miamor-platform/6.png', 'assets/work/images/miamor-platform/7.png'],
-                    showExploreButton: true,
-                    exploreLink: 'https://www.miamorrweb.com.ng'
-                },
-                {
-                    id: 3,
-                    title: 'Miamorrweb Micro-Website V2',
-                    subtitle: 'A Streamlined Digital Showcase',
-                    description: `Miamorrweb.com.ng is another similar micro-website I developed, designed to serve as a streamlined digital showcase for a specific audience. This project focuses on delivering a concise, visually appealing platform that highlights essential information with clarity and style. Built with modern frameworks, it ensures a responsive design that adapts seamlessly to desktops and mobile devices.\nI prioritized a user-friendly interface, incorporating smooth navigation and a cohesive color palette to enhance the visitor experience. This site demonstrates my ability to create lightweight yet effective web solutions, drawing on my full-stack development skills to optimize performance and accessibility. It’s an ideal example of how I can craft a professional online presence for businesses or individuals looking to make an impact with minimal complexity.\nThe process involved integrating dynamic elements while keeping the load time minimal, a challenge I tackled with precision. I also added interactive features like hover effects to engage visitors, ensuring the site remains memorable. This project highlights my capability to deliver tailored web designs that meet specific needs, from branding to content delivery. I’m proud to include Miamorrweb in my portfolio as a showcase of my versatility and commitment to quality in web development.`,
-                    mainImage: 'assets/work/images/miamor-platform-v2/main.png',
-                    galleryImages: ['assets/work/images/miamor-platform-v2/main.png', 'assets/work/images/miamor-platform-v2/1.png', 'assets/work/images/miamor-platform-v2/2.png', 'assets/work/images/miamor-platform-v2/3.png'],
-                    showExploreButton: true,
-                    exploreLink: 'https://www.miamor-platform.ng'
-                },
-                {
-                    id: 4,
-                    title: 'Tapify Presentation Landing Page',
-                    subtitle: 'Your Gateway to Financial Growth',
-                    description: `The Tapify presentation landing page at is a dynamic site I built to inspire and engage users with a compelling financial breakthrough narrative. Designed as a standalone page, it features an eye-catching layout with smooth animations, reflecting the "Tapify Logo Animation" concept you shared. Built with HTML, CSS, and JavaScript, it ensures a responsive and interactive experience across devices.\nThis project showcases my ability to blend creativity with functionality, using animations to draw attention to key messages like "Tap Into Your Financial Breakthrough." I focused on a global appeal, ensuring the design motivates users to join the movement while maintaining fast load times. My experience in full-stack development shines here, as I integrated seamless transitions and a clear call-to-action to drive user engagement.\nDeveloping this page involved experimenting with visual storytelling, balancing bold design with usability. I incorporated 3D elements to add depth, making it stand out. It’s a proud addition to my portfolio, demonstrating my skills in creating impactful landing pages that convert. This work reflects my passion for building innovative web solutions that resonate with diverse audiences.`,
-                    mainImage: 'assets/work/images/tapify/main.png',
-                    galleryImages: ['assets/work/images/tapify/main.png', 'assets/work/images/tapify/1.png', 'assets/work/images/tapify/2.png', 'assets/work/images/tapify/3.png', 'assets/work/images/tapify/4.png'],
-                    showExploreButton: true,
-                    exploreLink: 'https://tapify01.github.io/Tapify/'
-                },
-                {
-                    id: 5,
-                    title: 'Brand Identity/Logo Design',
-                    subtitle: 'Crafting Unique Brand Identities',
-                    description: `My branding and logo design work focuses on creating distinctive visual identities that capture a brand’s essence. Each logo is meticulously designed to reflect the client’s values, using bold shapes, modern typography, and a cohesive color scheme. This process involves sketching concepts, refining details, and ensuring scalability across various mediums like business cards, websites, and merchandise.\nThis showcases my ability to blend creativity with strategic thinking, delivering logos that stand out in competitive markets. I prioritize client input to tailor designs that resonate, drawing on my graphic design expertise to build recognizable brands. I also consider cultural nuances and market trends to ensure versatility, often experimenting with vector art for precision. This attention to detail has led to designs that clients cherish, making it a key highlight in my portfolio and reflecting my skill in visual storytelling.\nThe iterative process includes multiple revisions, ensuring the final product aligns with the brand’s vision. I’ve worked on projects ranging from startups to established firms, adapting styles from minimalist to ornate. This experience has honed my ability to deliver tailored, impactful branding solutions, and I’m excited to showcase these creations as a cornerstone of my graphic design expertise.`,
-                    mainImage: 'assets/work/images/logo/main.png',
-                    galleryImages: ['assets/work/images/logo/main.png', 'assets/work/images/logo/1.png', 'assets/work/images/logo/2.png', 'assets/work/images/logo/3.png', 'assets/work/images/logo/4.png', 'assets/work/images/logo/5.png', 'assets/work/images/logo/6.png', 'assets/work/images/logo/7.png', 'assets/work/images/logo/8.png', 'assets/work/images/logo/9.png'],
-                    showExploreButton: false,
-                    exploreLink: '#'
-                },
-                {
-                    id: 6,
-                    title: 'Package Design',
-                    subtitle: 'Innovative Product Packaging Solutions',
-                    description: `My package design projects focus on creating innovative and functional packaging that enhances product appeal. I design layouts that protect contents while attracting customers with vibrant colors, unique shapes, and tactile finishes, all tailored to brand guidelines. This involves researching materials, ensuring sustainability, and testing prototypes to balance cost and durability.\nThis work highlights my ability to merge aesthetics with practicality, ensuring packages are both eye-catching and cost-effective. I collaborate closely with clients to align designs with their marketing goals, incorporating elements like embossed logos or eco-friendly materials to stand out on shelves. This approach has resulted in packaging that boosts sales and brand recognition, a proud part of my portfolio.\nThe process includes sketching initial concepts, using software like Adobe Illustrator for precision, and iterating based on feedback. I’ve designed for industries from food to cosmetics, each requiring distinct considerations like spill resistance or lightweight construction. This experience showcases my graphic design skills in creating market-ready solutions, and I’m eager to highlight these projects as evidence of my versatility and innovation.`,
-                    mainImage: 'assets/work/images/packaging/main.jpg',
-                    galleryImages: ['assets/work/images/packaging/main.jpg'],
-                    showExploreButton: false,
-                    exploreLink: '#'
-                },
-                {
-                    id: 7,
-                    title: 'Illustration',
-                    subtitle: 'Artistic Visual Storytelling',
-                    description: `My illustration work brings ideas to life with detailed, imaginative artwork. I create custom illustrations for various purposes, using digital tools like Procreate and Adobe Photoshop to craft characters, scenes, and concepts that align with client visions, emphasizing color, composition, and texture. This includes everything from book covers to promotional graphics, each tailored to evoke specific emotions.\nThis demonstrates my artistic versatility and ability to enhance projects with unique visuals. I often blend traditional techniques with digital enhancements, ensuring a handcrafted feel that resonates with audiences. This skill has been applied to diverse projects, from children’s books to corporate branding, showcasing my adaptability. It’s a standout in my portfolio, reflecting my passion for creative design.\nThe process involves brainstorming with clients, sketching rough drafts, and refining details through multiple layers. I pay close attention to lighting and perspective to create depth, often adding subtle Easter eggs for engagement. This meticulous approach has earned praise for its originality, and I’m thrilled to present these illustrations as a testament to my artistic growth and dedication.`,
-                    mainImage: 'assets/work/images/illustration/main.jpg',
-                    galleryImages: ['assets/work/images/illustration/main.jpg'],
-                    showExploreButton: false,
-                    exploreLink: '#'
-                },
-                 {
-                    id: 8,
-                    title: 'Flyer Design',
-                    subtitle: 'Effective Promotional Materials',
-                    description: `My flyer designs are crafted to grab attention and convey messages effectively. I focus on bold typography, strategic color use, and clear layouts to ensure readability and impact, tailored to specific campaigns like product launches or events. This involves researching target demographics to select fonts and imagery that resonate, ensuring the design stands out in crowded spaces.\nThis showcases my skill in creating marketing tools that engage audiences, a key strength in my graphic design portfolio. I incorporate eye-catching elements like QR codes or bold headlines, balancing creativity with practicality. Past projects have included flyers for local businesses and large-scale promotions, each requiring unique approaches to maximize reach and conversion.\nThe design process starts with a brief, followed by sketching layouts and using tools like Adobe InDesign for precision. I test color contrasts and readability across print and digital formats, refining based on feedback. This iterative method has led to flyers that drive action, reflecting my ability to deliver results-driven designs. I’m proud to feature these in my portfolio as examples of my marketing design prowess.`,
-                    mainImage: 'assets/work/images/flyer/main.jpg',
-                    galleryImages: ['assets/work/images/flyer/main.jpg'],
-                    showExploreButton: false,
-                    exploreLink: '#'
-                },
-                {
-                    id: 9,
-                    title: 'Poster Design',
-                    subtitle: 'Captivating Visual Campaigns',
-                    description: `My poster design work focuses on creating captivating visual campaigns that grab attention and communicate messages effectively. I craft each poster with a blend of bold typography, striking imagery, and strategic color schemes, tailored to suit events, promotions, or brand awareness initiatives. This process begins with understanding the target audience, ensuring the design resonates whether it’s for a concert, charity drive, or corporate event. Using tools like CorelDRAW, Adobe Photoshop and Illustrator, I develop layouts that balance creativity with clarity, making sure text is legible from a distance and visuals evoke the intended emotion.\nThis showcases my ability to deliver impactful marketing materials, a key strength in my graphic design portfolio. I incorporate elements like dynamic compositions and focal points to draw viewers in, often adding unique textures or gradients to enhance visual appeal. Past projects have included posters for local festivals and international conferences, each requiring a distinct approach to align with the event’s tone and goals. This versatility highlights my skill in adapting designs to diverse contexts while maintaining a high standard of quality.\nThe design process involves sketching initial concepts, refining them through digital iterations, and testing print proofs to ensure vibrant colors and crisp details. I collaborate closely with clients to incorporate their feedback, adjusting layouts or imagery as needed to meet their vision. This iterative approach has resulted in posters that not only stand out in public spaces but also drive engagement and action. With a keen eye for trends and a commitment to excellence, I’m proud to feature these poster designs in my portfolio as a testament to my ability to create visually compelling and purposeful graphics, especially relevant as I continue to grow my skills.`,
-                    mainImage: 'assets/work/images/poster/main.jpg',
-                    galleryImages: ['assets/work/images/poster/main.jpg'],
-                    showExploreButton: false,
-                    exploreLink: '#'
-                },
-                {
-                    id: 10,
-                    title: 'Dennis Ad Portfolio Website',
-                    subtitle: 'A Personal Showcase of Design and Development',
-                    description: 'The very website you are currently browsing. Designed and developed from scratch to showcase my skills in UI/UX design, front-end development, and creative direction. The goal was to create a unique and interactive experience that reflects my personal brand and technical capabilities. It features a split-screen design, dynamic content, and smooth animations powered by GSAP. This project is a testament to my ability to bring a complete vision to life, from concept to deployment.',
-                    mainImage: 'assets/work/images/my-website/main.png',
-                    galleryImages: ['assets/work/images/my-website/main.png', 'assets/work/images/my-website/1.png', 'assets/work/images/my-website/2.png', 'assets/work/images/my-website/3.png', 'assets/work/images/my-website/4.png', 'assets/work/images/my-website/5.png'],
-                    showExploreButton: false,
-                    exploreLink: '#'
-                }
-            ];
-
             const workGrid = document.getElementById('work-grid');
             const workDetailView = document.getElementById('work-detail-view');
             const closeDetailBtn = document.getElementById('close-detail-btn');
@@ -1023,7 +980,7 @@
 
             function generateWorkGrid() {
                 if (!workGrid) return;
-                workGrid.innerHTML = ''; // Clear existing grid
+                workGrid.innerHTML = ''; // Clear existing grid/skeletons
                 projects.forEach(project => {
                     const item = document.createElement('a');
                     item.href = '#';
@@ -1031,9 +988,7 @@
                     item.dataset.projectId = project.id;
                     
                     item.innerHTML = `
-                        <div class="work-item-image" style="background-image: url('${project.mainImage}')">
-                            ${!project.mainImage || project.mainImage.includes('placeholder') ? 'Image' : ''}
-                        </div>
+                        <div class="work-item-image" style="background-image: url('${project.mainImage}')"></div>
                         <div class="work-item-text">
                             <h3 class="work-item-title">${project.title}</h3>
                             <p class="work-item-subtitle">${project.subtitle}</p>
@@ -1046,17 +1001,14 @@
             function updateGalleryView() {
                 if (!currentProjectData) return;
                 
-                // Update main image
                 const newImageSrc = currentProjectData.galleryImages[currentImageIndex];
                 detailMainImage.style.backgroundImage = `url('${newImageSrc}')`;
-                detailMainImage.textContent = !newImageSrc || newImageSrc.includes('placeholder') ? 'Image' : '';
+                detailMainImage.textContent = '';
 
-                // Update thumbnail active state
                 const allThumbs = detailThumbnails.querySelectorAll('.work-detail-thumb');
                 allThumbs.forEach((thumb, index) => {
                     if (index === currentImageIndex) {
                         thumb.classList.add('active');
-                        // Scroll the active thumb into view
                         thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                     } else {
                         thumb.classList.remove('active');
@@ -1082,9 +1034,10 @@
                 
                 detailTitle.textContent = project.title;
                 detailSubtitle.textContent = project.subtitle;
-                detailBody.textContent = project.description;
+                // Use innerHTML to render formatted text from the rich text editor
+                detailBody.innerHTML = project.description;
                 
-                if (project.showExploreButton) {
+                if (project.showExploreButton && project.exploreLink) {
                     detailExploreLink.style.display = 'inline-block';
                     detailExploreLink.href = project.exploreLink;
                 } else {
@@ -1161,7 +1114,13 @@
                 });
 
                 // Initial population of the grid
-                generateWorkGrid();
+                fetchProjects().then(fetchedProjects => {
+                    projects = fetchedProjects;
+                    generateWorkGrid();
+                }).catch(error => {
+                    console.error("Error fetching projects:", error);
+                    workGrid.innerHTML = '<p style="color: white; grid-column: 1 / -1; text-align: center;">Could not load projects. Please try again later.</p>';
+                });
             }
         });
     </script>
