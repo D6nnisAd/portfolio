@@ -29,6 +29,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <!-- PhotoSwipe -->
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.css">
+    
     <style>
         :root {
             --left-bg: #F0FFF1;
@@ -363,22 +366,14 @@
             background-color: #f0f0f0;
             border-radius: 20px 20px 15px 15px;
 
-            /* --- GUIDE: HOW TO EDIT THE SHAPE --- */
-            /* The sh ape is controlled by aspect-ratio, preventing stretching. */
-            /* To change the shape, edit the values below (e.g., 4 / 3, 1 / 1). */
-            /* The container's width is 100% of the card, and this sets the height automatically. */
-            aspect-ratio: 16 / 9;
+            /* Using width 100% and height auto to show full image without cropping */
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* Ensures the whole image is visible within its space */
             
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 400;
-            color: #888;
-            font-size: 1.5rem;
             /* Change margin-bottom to adjust space between the main image and the gallery thumbnails below it. */
             margin-bottom: 1rem;
-            background-size: cover;
-            background-position: center;
         }
         
         .work-detail-gallery-nav {
@@ -688,8 +683,8 @@
                 height: 100%;
                 background-color: var(--left-bg);
                 z-index: 100;
-                /* Change the padding for the entire mobile overlay screen. */
-                padding: 1.5rem;
+                /* Removed padding to allow edge-to-edge content */
+                padding: 0;
                 overflow-y: auto;
             }
             .work-detail-scroll-content {
@@ -701,15 +696,34 @@
                 background-color: rgba(210, 211, 213, 0.65);
                 -webkit-backdrop-filter: blur(15px);
                 backdrop-filter: blur(15px);
-                border-top: 1px solid rgba(255, 255, 255, 0.5);
-                border-left: 1px solid rgba(255, 255, 255, 0.5);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
-                padding: 1.5rem;
+                padding: 0; /* No padding here to let image be edge-to-edge */
                 margin-bottom: 1.5rem;
-                border-radius: 40px 40px 10px 10px;
+                border-radius: 0; /* Full edge-to-edge */
             }
 
-            .work-detail-close-btn { top: 0.8rem; right: 0.8rem; width: 35px; height: 35px; }
+            .work-detail-image-main {
+                border-radius: 0; /* Sharp corners for edge-to-edge look */
+                margin-bottom: 1rem;
+                /* Height is now auto based on image aspect ratio */
+            }
+
+            .work-detail-gallery-nav {
+                padding: 0 1.5rem; /* Re-add padding for navigation */
+                margin-bottom: 2rem;
+            }
+
+            .work-detail-close-btn { 
+                top: 1rem; 
+                right: 1rem; 
+                width: 40px; 
+                height: 40px; 
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                padding: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            }
             .work-detail-title {
                 /* --- GUIDE: MOBILE TYPOGRAPHY --- */
                 /* Change font-size for the title on mobile. */
@@ -729,8 +743,8 @@
                 font-size: 1rem;
             }
             .work-detail-text-content {
-                /* Change padding to adjust space around the text content block on mobile. */
-                padding: 0 0.5rem;
+                /* Increased padding for better readability on mobile */
+                padding: 0 1.5rem 3rem 1.5rem;
             }
 
             .site-footer-bottom { padding: 1rem 1.5rem; }
@@ -741,7 +755,19 @@
             .copyright-text { font-size: 0.7rem; }
             .info-popup-right a { font-size: 1.3rem; }
         }
-    </style>
+
+        /* PhotoSwipe Customizations */
+        .pswp {
+             --pswp-bg: rgba(0, 0, 0, 0.95);
+             backdrop-filter: blur(10px);
+         }
+         
+         /* Prevent any external styles from stretching PhotoSwipe images */
+         .pswp__img {
+             max-width: none !important;
+             object-fit: contain !important;
+         }
+     </style>
 </head>
 <body>
     <main class="container-fluid px-0">
@@ -857,7 +883,7 @@
             <div class="work-detail-scroll-content">
                 <div class="work-detail-card">
                     <img src="assets/work/cancel-button.svg" class="work-detail-close-btn" id="close-detail-btn" alt="Close detail view">
-                    <div id="detail-main-image" class="work-detail-image-main"></div>
+                    <img id="detail-main-image" class="work-detail-image-main" src="" alt="Project image preview" style="cursor: zoom-in;">
                     <div class="work-detail-gallery-nav">
                         <img src="assets/work/left-button.svg" class="gallery-arrow gallery-arrow-left" alt="Previous image">
                         <div class="thumbnails-scroll-container">
@@ -878,6 +904,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Fullscreen Image Viewer -->
+        <!-- Handled by PhotoSwipe -->
 
         <footer class="site-footer-bottom container-fluid" id="main-footer">
             <div class="footer-logo">
@@ -929,6 +958,7 @@
     
     <script type="module">
         import { fetchProjects } from './app.js';
+        import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
 
         document.addEventListener('DOMContentLoaded', () => {
             let projects = [];
@@ -1002,8 +1032,7 @@
                 if (!currentProjectData) return;
                 
                 const newImageSrc = currentProjectData.galleryImages[currentImageIndex];
-                detailMainImage.style.backgroundImage = `url('${newImageSrc}')`;
-                detailMainImage.textContent = '';
+                detailMainImage.src = newImageSrc;
 
                 const allThumbs = detailThumbnails.querySelectorAll('.work-detail-thumb');
                 allThumbs.forEach((thumb, index) => {
@@ -1112,6 +1141,72 @@
                         }
                     }
                 });
+
+                // --- PhotoSwipe Fullscreen Logic ---
+                const openFullscreen = async (index) => {
+                    if (!currentProjectData) return;
+
+                    const slides = currentProjectData.galleryImages.map(img => ({
+                        src: img,
+                        w: 0,
+                        h: 0
+                    }));
+
+                    // Pre-calculate dimensions for the starting image if possible to avoid initial stretch
+                    const startImg = new Image();
+                    startImg.src = slides[index].src;
+                    if (startImg.complete) {
+                        slides[index].w = startImg.naturalWidth;
+                        slides[index].h = startImg.naturalHeight;
+                    }
+
+                    const lightbox = new PhotoSwipeLightbox({
+                        dataSource: slides,
+                        index: index,
+                        pswpModule: () => import('https://unpkg.com/photoswipe@5.4.3/dist/photoswipe.esm.js')
+                    });
+
+                    // Handle unknown image dimensions to prevent stretching
+                    lightbox.on('gettingData', (event) => {
+                        const { data, index } = event;
+                        
+                        if (data.w <= 0 || data.h <= 0) {
+                            const img = new Image();
+                            img.src = data.src;
+                            
+                            if (img.complete) {
+                                data.w = img.naturalWidth;
+                                data.h = img.naturalHeight;
+                            } else {
+                                img.onload = () => {
+                                    data.w = img.naturalWidth;
+                                    data.h = img.naturalHeight;
+                                    if (lightbox.pswp) {
+                                        lightbox.pswp.refreshSlideContent(index);
+                                    }
+                                };
+                            }
+                        }
+                    });
+
+                    lightbox.on('change', () => {
+                        // Sync back the main gallery index when user swipes in PhotoSwipe
+                        currentImageIndex = lightbox.pswp.currIndex;
+                        updateGalleryView();
+                    });
+
+                    lightbox.init();
+                    lightbox.loadAndOpen(index);
+                };
+
+                detailMainImage.addEventListener('click', () => {
+                    openFullscreen(currentImageIndex);
+                });
+
+                // Escape key support is built into PhotoSwipe
+                // Swipe support is built into PhotoSwipe
+                // Pinch-to-zoom is built into PhotoSwipe
+                // Navigation arrows are built into PhotoSwipe
 
                 // Initial population of the grid
                 fetchProjects().then(fetchedProjects => {
