@@ -1,0 +1,266 @@
+- generic [ref=e5]:
+  - generic [ref=e11]:
+    - link [ref=e12] [cursor=pointer]:
+      - /url: https://web.facebook.com/business?_rdc=1&_rdr#
+      - img "Meta for Business (formerly Facebook for Business)" [ref=e13]
+    - generic [ref=e14]:
+      - button [ref=e23] [cursor=pointer]
+      - link [ref=e24] [cursor=pointer]:
+        - /url: "#"
+        - img "Mobile Hamburger" [ref=e26]
+  - generic [ref=e29]:
+    - link "Business Help Centre" [ref=e32] [cursor=pointer]:
+      - /url: /business/help
+    - button "Get support" [ref=e37] [cursor=pointer]
+  - generic [ref=e39]:
+    - generic [ref=e41]:
+      - main [ref=e42]:
+        - generic [ref=e43]:
+          - heading "How to verify your business in Meta Business Suite" [level=1] [ref=e47]
+          - generic [ref=e52]:
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - paragraph [ref=e56]: This article explains how business portfolio owners with full control can verify their business in Meta Business Suite. Business verification is required to access certain advertising, developer, billing and spending features. It covers prerequisites, the step-by-step verification process, and what to do if your verification is rejected.
+                - paragraph [ref=e57]:
+                  - text: Learn more about
+                  - link "when you may need to verify your business" [ref=e58] [cursor=pointer]:
+                    - /url: https://web.facebook.com/business/help/1095661473946872
+                  - text: .
+              - generic [ref=e59]:
+                - heading "Prerequisites for verifying your business in Meta Business Suite" [level=2] [ref=e61]
+                - list [ref=e62]:
+                  - listitem [ref=e63]:
+                    - generic [ref=e64]:
+                      - text: You can only start the business verification process in Meta Business Suite if your business portfolio is
+                      - link "eligible" [ref=e65] [cursor=pointer]:
+                        - /url: https://web.facebook.com/business/help/1095661473946872
+                      - text: for verification. A business portfolio is where you manage your business assets on Meta.
+                  - listitem [ref=e66]:
+                    - generic [ref=e67]:
+                      - text: You must have
+                      - link "full control" [ref=e68] [cursor=pointer]:
+                        - /url: https://facebook.com/business/help/442345745885606
+                      - text: of the
+                      - link "business portfolio" [ref=e69] [cursor=pointer]:
+                        - /url: https://facebook.com/business/help/486932075688253
+                      - text: . Full control is the highest permission level for a business portfolio, allowing you to manage all settings, including verification.
+                  - listitem [ref=e70]:
+                    - generic [ref=e71]:
+                      - text: Depending on the product or feature that you want to access and that requires you to verify your business, you may be emailed or notified from a platform other than
+                      - link "Security Centre" [ref=e72] [cursor=pointer]:
+                        - /url: https://business.facebook.com/settings/security
+                      - text: to complete the verification process. In this case, refer to that email or notification for instructions.
+                  - listitem [ref=e73]:
+                    - generic [ref=e74]:
+                      - text: If you use
+                      - link "monthly invoicing" [ref=e75] [cursor=pointer]:
+                        - /url: https://web.facebook.com/business/help/2086865811541431
+                      - text: to pay for ads, then you don't need to submit documentation for business verification. When you start the business verification process, you can fill in the form with your line of credit information and submit it. If you can't see that option, make sure that the business portfolio you're trying to verify is linked to a line of credit that you own, not one that is shared with another business.
+                  - listitem [ref=e76]:
+                    - generic [ref=e77]: If you provide false or misleading information during the verification process, attempt to claim and verify a business that you aren't authorised to represent or otherwise attempt to circumvent Meta's verification review system, Meta may prevent your business from being verified, remove your business's verified status or take additional action on the account.
+                  - listitem [ref=e78]:
+                    - generic [ref=e79]:
+                      - text: Verifying your business in Meta Business Suite is different from
+                      - link "Meta Verified for businesses" [ref=e80] [cursor=pointer]:
+                        - /url: https://web.facebook.com/business/help/308979828303560
+                      - text: and won't give you a verified badge.
+              - generic [ref=e81]:
+                - heading "Verifying your business in Meta Business Suite" [level=2] [ref=e83]
+                - paragraph [ref=e84]: "To verify your business in Meta Business Suite using a desktop browser:"
+                - list [ref=e85]:
+                  - listitem [ref=e86]:
+                    - text: Go to
+                    - link "Security Centre" [ref=e87] [cursor=pointer]:
+                      - /url: https://business.facebook.com/settings/security
+                    - text: in Meta Business Suite.
+                    - list [ref=e88]:
+                      - listitem [ref=e89]:
+                        - generic [ref=e90]:
+                          - text: If you cannot access this, then you may not have
+                          - link "full control" [ref=e91] [cursor=pointer]:
+                            - /url: https://facebook.com/business/help/442345745885606
+                          - text: of the business portfolio.
+                  - listitem [ref=e92]:
+                    - text: Click Start verification.
+                    - list [ref=e93]:
+                      - listitem [ref=e94]:
+                        - generic [ref=e95]:
+                          - text: If you see Ineligible for verification, then you don't need to complete verification in Security Centre. However, depending on the product or feature you want to access that requires you to verify your business, you may be emailed or notified from a platform other than
+                          - link "Security Centre" [ref=e96] [cursor=pointer]:
+                            - /url: https://business.facebook.com/settings/security
+                          - text: to complete the verification process. In this case, refer to that email or notification for instructions.
+                  - listitem [ref=e97]: Provide your business details, including the legal business name, address, phone number and website. Check that the details you enter exactly match the details of your legal business entity. Also make sure that your business's website loads and is HTTPS-compliant (this means that your website uses a secure connection and the URL starts with https://).
+                  - listitem [ref=e98]:
+                    - text: Confirm your business details. If no matching record is found, then you can select My business isn't listed or None of these match. In this case, you may be asked to upload
+                    - link "official documents" [ref=e99] [cursor=pointer]:
+                      - /url: https://web.facebook.com/business/help/159334372093366
+                    - text: ", such as a business licence or articles of incorporation, to confirm the details that you entered."
+                  - listitem [ref=e100]:
+                    - text: Choose a method (email, phone, text message, WhatsApp message or domain verification) to confirm your connection. To confirm via domain verification (which confirms that you own your business's website by adding a meta tag or DNS record),
+                    - link "follow the domain verification steps in the Meta Business Help Centre" [ref=e101] [cursor=pointer]:
+                      - /url: https://web.facebook.com/business/help/321167023127050
+                    - text: .
+                    - list [ref=e102]:
+                      - listitem [ref=e103]:
+                        - generic [ref=e104]:
+                          - text: Learn how to
+                          - link "edit your business details" [ref=e105] [cursor=pointer]:
+                            - /url: https://web.facebook.com/business/help/322526208728282
+                          - text: such as business phone number.
+                  - listitem [ref=e106]: Confirm your connection, then click Done. You'll see a confirmation that your verification submission has been received.
+                - paragraph [ref=e107]:
+                  - text: A decision on your verification submission may take up to 14 working days. You'll receive a notification when the review is complete. If you receive confirmation that your business is verified, then no further action is needed. Learn
+                  - link "what to do if your application was rejected" [ref=e108] [cursor=pointer]:
+                    - /url: https://web.facebook.com/business/help/2342133782492969
+                  - text: .
+                - paragraph [ref=e109]:
+                  - text: "Note: If you"
+                  - link "edit your business details" [ref=e110] [cursor=pointer]:
+                    - /url: https://web.facebook.com/business/help/322526208728282
+                  - text: ", then you need to complete the verification process again."
+              - generic [ref=e111]:
+                - heading "Learn more" [level=2] [ref=e113]
+                - list [ref=e114]:
+                  - listitem [ref=e115]:
+                    - link "About business verification" [ref=e117] [cursor=pointer]:
+                      - /url: https://web.facebook.com/business/help/1095661473946872
+                  - listitem [ref=e118]:
+                    - link "Troubleshoot issues with verifying your business" [ref=e120] [cursor=pointer]:
+                      - /url: https://web.facebook.com/business/help/2342133782492969
+                  - listitem [ref=e121]:
+                    - link "Edit your business details" [ref=e123] [cursor=pointer]:
+                      - /url: https://web.facebook.com/business/help/322526208728282
+            - generic [ref=e128]:
+              - heading "Common support topics" [level=5] [ref=e131]
+              - generic [ref=e133]:
+                - link "About advertising restrictions" [ref=e136] [cursor=pointer]:
+                  - /url: /business/help/975570072950669
+                - heading "Business Help Centre" [level=5] [ref=e138]
+              - generic [ref=e142]:
+                - link "Troubleshoot a disabled or restricted account" [ref=e145] [cursor=pointer]:
+                  - /url: /business/help/422289316306981
+                - heading "Business Help Centre" [level=5] [ref=e147]
+              - generic [ref=e151]:
+                - link "About Meta Business Support Home" [ref=e154] [cursor=pointer]:
+                  - /url: /business/help/254088759757736
+                - heading "Business Help Centre" [level=5] [ref=e156]
+              - generic [ref=e160]:
+                - link "Fix a failed payment issue on Meta" [ref=e163] [cursor=pointer]:
+                  - /url: /business/help/268196136699959
+                - heading "Business Help Centre" [level=5] [ref=e165]
+              - link [ref=e169] [cursor=pointer]:
+                - /url: "#"
+            - generic [ref=e170]:
+              - generic [ref=e172]:
+                - link [ref=e173] [cursor=pointer]:
+                  - /url: /business/help/2058515294227817?helpref=uf_permalink
+                  - img "Permalink" [ref=e174]
+                - link [ref=e175] [cursor=pointer]:
+                  - /url: https://web.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fweb.facebook.com%2Fbusiness%2Fhelp%2F2058515294227817
+                  - img "Share" [ref=e176]
+              - generic [ref=e181]:
+                - generic [ref=e182]: Was this information helpful?
+                - radiogroup [ref=e183]:
+                  - generic [ref=e185]:
+                    - radio "Yes" [ref=e187] [cursor=pointer]
+                    - generic [ref=e188] [cursor=pointer]: "Yes"
+                  - generic [ref=e191]:
+                    - radio "No" [ref=e193] [cursor=pointer]
+                    - generic [ref=e194] [cursor=pointer]: "No"
+            - button "Feedback" [ref=e197] [cursor=pointer]
+            - generic [ref=e205]:
+              - paragraph [ref=e207]: "More in this section:"
+              - generic [ref=e209]:
+                - generic [ref=e215]:
+                  - generic [ref=e217]:
+                    - button [ref=e218] [cursor=pointer]:
+                      - heading "Basics" [level=3] [ref=e223]
+                    - generic [ref=e227]:
+                      - link "About business portfolios" [ref=e228] [cursor=pointer]:
+                        - /url: /business/help/486932075688253
+                      - link "About business portfolio and business asset permissions" [ref=e229] [cursor=pointer]:
+                        - /url: /business/help/442345745885606
+                      - link "About Settings in Meta Business Suite" [ref=e230] [cursor=pointer]:
+                        - /url: /business/help/530540643805698
+                      - link "Find your business portfolio ID" [ref=e231] [cursor=pointer]:
+                        - /url: /business/help/1181250022022158
+                  - generic [ref=e232]:
+                    - button [ref=e233] [cursor=pointer]:
+                      - heading "Set Up" [level=3] [ref=e238]
+                    - generic [ref=e242]:
+                      - link "Create a business portfolio" [ref=e243] [cursor=pointer]:
+                        - /url: /business/help/1710077379203657
+                      - link "Accept an invitation to join a business portfolio" [ref=e244] [cursor=pointer]:
+                        - /url: /business/help/351956468742349
+                      - link "About setting up and managing your business portfolio and business assets" [ref=e245] [cursor=pointer]:
+                        - /url: /business/help/586400082815745
+                - generic [ref=e251]:
+                  - generic [ref=e253]:
+                    - button [ref=e254] [cursor=pointer]:
+                      - heading "Manage" [level=3] [ref=e259]
+                    - generic [ref=e263]:
+                      - link "Edit your information in Meta Business Suite" [ref=e264] [cursor=pointer]:
+                        - /url: /business/help/257957338156440
+                      - link "Change someone's access and permissions to a business portfolio or business asset" [ref=e265] [cursor=pointer]:
+                        - /url: /business/help/299504287548592
+                      - link "Delete your business portfolio" [ref=e266] [cursor=pointer]:
+                        - /url: /business/help/1592865014304024
+                  - generic [ref=e267]:
+                    - button [ref=e268] [cursor=pointer]:
+                      - heading "Troubleshoot" [level=3] [ref=e273]
+                    - link "Troubleshoot why you can't delete your business portfolio" [ref=e278] [cursor=pointer]:
+                      - /url: /business/help/2186488678264121
+      - generic [ref=e282]:
+        - generic [ref=e287]:
+          - heading "Get the latest updates from Meta for business." [level=2] [ref=e288]
+          - paragraph [ref=e290]: Provide your email address to receive the latest updates from Meta for business, including news, events and product updates.
+        - generic [ref=e299]:
+          - generic [ref=e301]:
+            - textbox "Email address" [ref=e303]
+            - combobox "Enter a country name..." [ref=e308]
+            - paragraph [ref=e317]:
+              - text: By submitting this form, you agree to receive marketing related electronic communications from Meta, including news, events, updates and promotional emails. You may withdraw your consent and unsubscribe from these at any time, for example, by clicking the unsubscribe link included in our emails. For more information about how Meta handles your data, please read our
+              - link "Data Policy" [ref=e318] [cursor=pointer]:
+                - /url: /about/privacy
+              - text: .
+          - button "Subscribe" [ref=e321] [cursor=pointer]
+      - generic [ref=e329]:
+        - link "© 2026 Meta" [ref=e331] [cursor=pointer]:
+          - /url: https://web.facebook.com/
+        - generic [ref=e332]:
+          - generic [ref=e333]:
+            - link "About" [ref=e334] [cursor=pointer]:
+              - /url: https://www.meta.com/about/
+            - link "Developers" [ref=e335] [cursor=pointer]:
+              - /url: https://developers.meta.com/
+            - link "Careers" [ref=e336] [cursor=pointer]:
+              - /url: https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.metacareers.com%2F&h=AUDCzqAW-BYMHEjEpTPvQBhGRpKIgVYEBpLaV9YkWCY_Ha9M3vSmc4KcDe0SvyIBWGRaapb-4Ys88J6Fo1jTW2pTbJyKwIQVC63FTCGwqGKawlsAd0FOvODzegsNn9-V33sWVon-AYwKLMnutzrM9w
+            - link "Privacy" [ref=e337] [cursor=pointer]:
+              - /url: https://web.facebook.com/privacy/explanation
+            - link "Cookies" [ref=e338] [cursor=pointer]:
+              - /url: https://web.facebook.com/help/cookies
+            - link "Terms" [ref=e339] [cursor=pointer]:
+              - /url: https://web.facebook.com/policies/
+            - link "Help Centre" [ref=e340] [cursor=pointer]:
+              - /url: https://web.facebook.com/business/help/
+          - generic [ref=e341]:
+            - link "English (UK)" [ref=e342] [cursor=pointer]:
+              - /url: https://en-gb.facebook.com/business/help/2058515294227817
+            - link "English (US)" [ref=e343] [cursor=pointer]:
+              - /url: https://web.facebook.com/business/help/2058515294227817
+            - link "Español" [ref=e344] [cursor=pointer]:
+              - /url: https://es-la.facebook.com/business/help/2058515294227817
+            - link "Português (Brasil)" [ref=e345] [cursor=pointer]:
+              - /url: https://pt-br.facebook.com/business/help/2058515294227817
+            - link "Français (France)" [ref=e346] [cursor=pointer]:
+              - /url: https://fr-fr.facebook.com/business/help/2058515294227817
+            - link "Español (España)" [ref=e347] [cursor=pointer]:
+              - /url: https://es-es.facebook.com/business/help/2058515294227817
+            - button "More languages" [ref=e348] [cursor=pointer]
+    - generic [ref=e351]:
+      - button [ref=e352] [cursor=pointer]
+      - generic [ref=e353]:
+        - heading "Log in to Meta for Business" [level=4] [ref=e354]
+        - paragraph [ref=e356]: Manage your ad accounts and get personalised support.
+        - button
+        - button "Log in with Facebook" [ref=e357] [cursor=pointer]
