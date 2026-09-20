@@ -8,16 +8,20 @@
     <meta name="description" content="Explore the technical and creative skills of Dennis Ad, including full-stack development (React, Node.js, SQL), UI/UX design, graphic design, and illustration.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dennisad.qzz.io/skills.html">
+    <meta property="og:url" content="https://dennisad.com.ng/skills.html">
     <meta property="og:title" content="Skills | Dennis Ad - Portfolio">
     <meta property="og:description" content="Explore the technical and creative skills of Dennis Ad, including full-stack development (React, Node.js, SQL), UI/UX design, graphic design, and illustration.">
-    <meta property="og:image" content="https://dennisad.qzz.io/assets/home/hero-image.png">
+    <meta property="og:image" content="https://dennisad.com.ng/assets/home/hero-image.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://dennisad.qzz.io/skills.html">
+    <meta property="twitter:url" content="https://dennisad.com.ng/skills.html">
     <meta property="twitter:title" content="Skills | Dennis Ad - Portfolio">
     <meta property="twitter:description" content="Explore the technical and creative skills of Dennis Ad, including full-stack development (React, Node.js, SQL), UI/UX design, graphic design, and illustration.">
-    <meta property="twitter:image" content="https://dennisad.qzz.io/assets/home/hero-image.png">
+    <meta property="twitter:image" content="https://dennisad.com.ng/assets/home/hero-image.png">
+    <link rel="canonical" href="https://dennisad.com.ng/skills.html">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"LocalBusiness","name":"DENNIS AD LABS","url":"https://dennisad.com.ng","email":"contact@dennisad.com.ng","telephone":"+2348107091326","address":{"@type":"PostalAddress","streetAddress":"11, King Jesus Street, Ozuboko","addressLocality":"Port Harcourt","addressRegion":"Rivers State","postalCode":"500101","addressCountry":"NG"}}
+    </script>
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
@@ -448,6 +452,57 @@
             color: #FFFFFF;
         }
 
+        .legal-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            line-height: 1.5;
+        }
+
+        .legal-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #FFFFFF;
+        }
+
+        .legal-address {
+            font-style: normal;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        .legal-contact,
+        .legal-nav {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #FFFFFF;
+        }
+
+        .legal-contact a,
+        .legal-nav a {
+            color: #FFFFFF;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .legal-nav a {
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .legal-contact a:hover,
+        .legal-nav a:hover {
+            opacity: 0.7;
+        }
+
+        .info-popup-footer {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
         .info-popup-right {
             display: flex;
             align-items: center;
@@ -565,6 +620,35 @@
 
 
         /* Responsive adjustments for mobile */
+        
+        /* --- Footer refinements: extra-small legal text + tiny subtle collapse --- */
+        .legal-name { font-size: 0.72rem; }
+        .legal-address { font-size: 0.68rem; }
+        .legal-contact { font-size: 0.68rem; }
+        .copyright-text { font-size: 0.68rem; }
+        .legal-nav { font-size: 0.65rem; }
+        .info-popup-right { gap: 0.9rem; }
+        .popup-collapse {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: transparent;
+            color: #FFFFFF;
+            opacity: 0.75;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease, background 0.2s ease;
+        }
+        .popup-collapse:hover { transform: scale(1.15); opacity: 1; background: rgba(255, 255, 255, 0.15); }
+        .popup-collapse:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+
         @media (max-width: 768px) {
             body::before {
                 background: linear-gradient(to right, var(--left-bg) 16%, var(--right-bg) 16%);
@@ -648,6 +732,14 @@
             .info-popup-right a {
                 font-size: 1.3rem;
             }
+            .info-popup-left { flex-direction: row; align-items: center; justify-content: center; }
+            .info-popup-right { flex-direction: row; align-items: center; justify-content: center; gap: 0.9rem; }
+            .legal-name { font-size: 0.68rem; }
+            .legal-address { font-size: 0.62rem; }
+            .legal-contact { font-size: 0.62rem; }
+            .copyright-text { font-size: 0.62rem; }
+            .legal-nav { font-size: 0.6rem; }
+            .popup-collapse { width: 20px; height: 20px; min-width: 20px; font-size: 0.55rem; }
         }
     </style>
 </head>
@@ -762,13 +854,20 @@
         <!-- Info Popup Footer -->
         <div class="info-popup-footer" id="info-popup-footer">
             <div class="info-popup-left">
-                <a href="index.html" aria-label="Back to home"><img src="assets/home/logo.svg?v=1.0.3" alt="Dennis Ad Logo" class="popup-logo"></a>
-                <span class="copyright-text">&copy; 2025 by Dennis Ad Labs</span>
+                <a href="index.html" aria-label="Back to home"><img src="assets/home/logo.svg?v=1.0.3" alt="DENNIS AD LABS logo" class="popup-logo"></a>
+                <div class="legal-block">
+                    <strong class="legal-name">DENNIS AD LABS</strong>
+                    <address class="legal-address">11, King Jesus Street, Ozuboko, Port Harcourt, Rivers State 500101, Nigeria</address>
+                    <span class="legal-contact"><a href="mailto:contact@dennisad.com.ng">contact@dennisad.com.ng</a> | <a href="tel:+2348107091326">+234 810 709 1326</a></span>
+                    <span class="copyright-text">© 2026 DENNIS AD LABS. All rights reserved.</span>
+                    <nav class="legal-nav" aria-label="Legal"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></nav>
+                </div>
             </div>
             <div class="info-popup-right">
                 <a href="https://www.linkedin.com/in/dennis-ad-458069345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://www.upwork.com/freelancers/~0173c255d57d448cba?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork"></i></a>
                 <a href="https://x.com/D4nnisAd" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <button type="button" class="popup-collapse" id="popup-collapse" aria-label="Collapse footer" title="Collapse footer"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
             </div>
         </div>
     </main>
@@ -810,6 +909,22 @@
                     event.preventDefault();
                     infoPopupFooter.classList.toggle('show');
                     mainFooter.classList.toggle('hidden');
+                });
+                const collapseFooter = () => {
+                    infoPopupFooter.classList.remove('show');
+                    mainFooter.classList.remove('hidden');
+                };
+                const popupCollapseBtn = document.getElementById('popup-collapse');
+                if (popupCollapseBtn) {
+                    popupCollapseBtn.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        collapseFooter();
+                    });
+                }
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && infoPopupFooter.classList.contains('show')) {
+                        collapseFooter();
+                    }
                 });
             }
 

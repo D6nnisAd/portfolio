@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dennisad.qzz.io/index.html</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://dennisad.com.ng/index.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://dennisad.qzz.io/about.html</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://dennisad.com.ng/about.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://dennisad.qzz.io/skills.html</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://dennisad.com.ng/skills.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://dennisad.qzz.io/work.html</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://dennisad.com.ng/work.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://dennisad.qzz.io/contact.html</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://dennisad.com.ng/contact.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>0.80</priority>
   </url>
    <url>
-    <loc>https://dennisad.qzz.io/more.html</loc>
-    <lastmod>2024-07-30</lastmod>
+    <loc>https://dennisad.com.ng/more.html</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://dennisad.com.ng/privacy.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://dennisad.com.ng/terms.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <priority>0.30</priority>
   </url>
 </urlset>

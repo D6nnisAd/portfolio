@@ -8,16 +8,20 @@
     <meta name="description" content="Learn about Dennis Ad, a designer and developer driven by faith, curiosity, and a passion for creating solutions that blend aesthetics with robust engineering.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dennisad.qzz.io/about.html">
+    <meta property="og:url" content="https://dennisad.com.ng/about.html">
     <meta property="og:title" content="About Me | Dennis Ad - Portfolio">
     <meta property="og:description" content="Learn about Dennis Ad, a designer and developer driven by faith, curiosity, and a passion for creating solutions that blend aesthetics with robust engineering.">
-    <meta property="og:image" content="https://dennisad.qzz.io/assets/home/hero-image.png">
+    <meta property="og:image" content="https://dennisad.com.ng/assets/home/hero-image.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://dennisad.qzz.io/about.html">
+    <meta property="twitter:url" content="https://dennisad.com.ng/about.html">
     <meta property="twitter:title" content="About Me | Dennis Ad - Portfolio">
     <meta property="twitter:description" content="Learn about Dennis Ad, a designer and developer driven by faith, curiosity, and a passion for creating solutions that blend aesthetics with robust engineering.">
-    <meta property="twitter:image" content="https://dennisad.qzz.io/assets/home/hero-image.png">
+    <meta property="twitter:image" content="https://dennisad.com.ng/assets/home/hero-image.png">
+    <link rel="canonical" href="https://dennisad.com.ng/about.html">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"LocalBusiness","name":"DENNIS AD LABS","url":"https://dennisad.com.ng","email":"contact@dennisad.com.ng","telephone":"+2348107091326","address":{"@type":"PostalAddress","streetAddress":"11, King Jesus Street, Ozuboko","addressLocality":"Port Harcourt","addressRegion":"Rivers State","postalCode":"500101","addressCountry":"NG"}}
+    </script>
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
@@ -58,11 +62,11 @@
         }
 
         main {
-            height: 100%; /* Make main container fill the body */
-            overflow-y: auto; /* Show scrollbar ONLY when content overflows */
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            height: 100%;
+            overflow: hidden; /* Work-style: page never scrolls, only inner pane */
+            overflow-x: hidden;
             position: relative;
-            padding-bottom: 6rem; /* REDUCED to prevent unnecessary scrollbar */
+            padding-bottom: 0;
         }
         
         /* Desktop Header */
@@ -207,18 +211,32 @@
             animation-delay: -4s; /* Asynchronous spin */
         }
         
-        /* --- About Page Content --- */
+        /* --- About Page Content (Work-style inner scroll) --- */
         .page-content {
-            padding-top: 7rem; /* Reduced to pull content higher */
+            display: flex;
+            height: 100%;
+            min-height: 0;
+            box-sizing: border-box;
+            padding-top: 5rem;
+            padding-bottom: 0;
+            margin: 0;
             position: relative;
             z-index: 10;
             width: 100%;
-            pointer-events: none; /* Let events pass through the main container */
+            pointer-events: none;
         }
-        
+
+        .page-content > .d-none.d-md-block.col-md-6 { height: 100%; min-height: 0; }
+
         .right-pane {
-            padding: 0 4rem;
-            pointer-events: none; /* This pane is also a pass-through, critical for mobile */
+            height: 100%;
+            min-height: 0;
+            max-height: calc(100vh - 5rem);
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            padding: 1rem 4rem 6rem 4rem;
+            pointer-events: all;
         }
 
         .about-content {
@@ -252,6 +270,22 @@
             text-align: left;
             line-height: 1.7;
         }
+
+
+        /* --- Inner-scroll layout (Work-style): only content scrolls --- */
+        .right-pane {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+        }
+        .right-pane::-webkit-scrollbar { width: 8px; }
+        .right-pane::-webkit-scrollbar-track { background: transparent; }
+        .right-pane::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+        .right-pane::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.6); }
 
         /* Pop-up effect on hover for clickable items */
         .site-footer-bottom a,
@@ -374,6 +408,57 @@
             color: #FFFFFF;
         }
 
+        .legal-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            line-height: 1.5;
+        }
+
+        .legal-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #FFFFFF;
+        }
+
+        .legal-address {
+            font-style: normal;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        .legal-contact,
+        .legal-nav {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #FFFFFF;
+        }
+
+        .legal-contact a,
+        .legal-nav a {
+            color: #FFFFFF;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .legal-nav a {
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .legal-contact a:hover,
+        .legal-nav a:hover {
+            opacity: 0.7;
+        }
+
+        .info-popup-footer {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
         .info-popup-right {
             display: flex;
             align-items: center;
@@ -491,6 +576,35 @@
 
 
         /* Responsive adjustments for mobile */
+        
+        /* --- Footer refinements: extra-small legal text + tiny subtle collapse --- */
+        .legal-name { font-size: 0.72rem; }
+        .legal-address { font-size: 0.68rem; }
+        .legal-contact { font-size: 0.68rem; }
+        .copyright-text { font-size: 0.68rem; }
+        .legal-nav { font-size: 0.65rem; }
+        .info-popup-right { gap: 0.9rem; }
+        .popup-collapse {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: transparent;
+            color: #FFFFFF;
+            opacity: 0.75;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease, background 0.2s ease;
+        }
+        .popup-collapse:hover { transform: scale(1.15); opacity: 1; background: rgba(255, 255, 255, 0.15); }
+        .popup-collapse:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+
         @media (max-width: 768px) {
              body::before {
                 /* Mobile split is shifted left */
@@ -527,14 +641,23 @@
                 transform: rotate(45deg);
             }
 
-            /* About Page Responsive */
+            /* About Page Responsive (Work-style inner scroll) */
             .page-content {
-                padding-top: 7rem; /* Adjusted for mobile */
+                padding-top: 5.6rem;
+                padding-left: 16%; /* Non-interactive offset: taps pass through to shapes below */
+                height: 100%;
+                min-height: 0;
+                box-sizing: border-box;
             }
-            
+
             .right-pane {
-                padding-left: calc(16% + 1rem);
-                padding-right: 1rem;
+                height: 100%;
+                min-height: 0;
+                max-height: calc(100vh - 5.6rem);
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 1rem 1rem 6rem 1rem;
+                width: 100%;
             }
 
             .content-section {
@@ -576,6 +699,14 @@
             .info-popup-right a {
                 font-size: 1.3rem;
             }
+            .info-popup-left { flex-direction: row; align-items: center; justify-content: center; }
+            .info-popup-right { flex-direction: row; align-items: center; justify-content: center; gap: 0.9rem; }
+            .legal-name { font-size: 0.68rem; }
+            .legal-address { font-size: 0.62rem; }
+            .legal-contact { font-size: 0.62rem; }
+            .copyright-text { font-size: 0.62rem; }
+            .legal-nav { font-size: 0.6rem; }
+            .popup-collapse { width: 20px; height: 20px; min-width: 20px; font-size: 0.55rem; }
         }
     </style>
 </head>
@@ -651,7 +782,7 @@
             <div class="d-none d-md-block col-md-6">
                 <!-- Left empty pane for desktop -->
             </div>
-            <div class="col-12 col-md-6 right-pane">
+            <div class="col-12 col-md-6 right-pane" tabindex="0" role="region" aria-label="About content">
                 <div class="about-content">
                     <div class="content-section">
                         <h2 class="content-title">LOVE</h2>
@@ -681,13 +812,20 @@
         <!-- Info Popup Footer -->
         <div class="info-popup-footer" id="info-popup-footer">
             <div class="info-popup-left">
-                <a href="index.html" aria-label="Back to home"><img src="assets/home/logo.svg?v=1.0.3" alt="Dennis Ad Logo" class="popup-logo"></a>
-                <span class="copyright-text">&copy; 2025 by Dennis Ad Labs</span>
+                <a href="index.html" aria-label="Back to home"><img src="assets/home/logo.svg?v=1.0.3" alt="DENNIS AD LABS logo" class="popup-logo"></a>
+                <div class="legal-block">
+                    <strong class="legal-name">DENNIS AD LABS</strong>
+                    <address class="legal-address">11, King Jesus Street, Ozuboko, Port Harcourt, Rivers State 500101, Nigeria</address>
+                    <span class="legal-contact"><a href="mailto:contact@dennisad.com.ng">contact@dennisad.com.ng</a> | <a href="tel:+2348107091326">+234 810 709 1326</a></span>
+                    <span class="copyright-text">© 2026 DENNIS AD LABS. All rights reserved.</span>
+                    <nav class="legal-nav" aria-label="Legal"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></nav>
+                </div>
             </div>
             <div class="info-popup-right">
                 <a href="https://www.linkedin.com/in/dennis-ad-458069345" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://www.upwork.com/freelancers/~0173c255d57d448cba?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork"></i></a>
                 <a href="https://x.com/D4nnisAd" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <button type="button" class="popup-collapse" id="popup-collapse" aria-label="Collapse footer" title="Collapse footer"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
             </div>
         </div>
     </main>
@@ -729,6 +867,22 @@
                     event.preventDefault();
                     infoPopupFooter.classList.toggle('show');
                     mainFooter.classList.toggle('hidden');
+                });
+                const collapseFooter = () => {
+                    infoPopupFooter.classList.remove('show');
+                    mainFooter.classList.remove('hidden');
+                };
+                const popupCollapseBtn = document.getElementById('popup-collapse');
+                if (popupCollapseBtn) {
+                    popupCollapseBtn.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        collapseFooter();
+                    });
+                }
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && infoPopupFooter.classList.contains('show')) {
+                        collapseFooter();
+                    }
                 });
             }
 
